@@ -2,14 +2,9 @@ import streamlit as st
 from gtts import gTTS
 import os
 
-# --- CONFIGURACIÓN DE LA PÁGINA ---
-st.set_page_config(page_title="Mi Clase de Español", page_icon="🎓")
+st.set_page_config(page_title="Dictado de Español", page_icon="🇪🇸")
 
-st.title("🎧 Ejercicio de Dictado")
-st.write("Escucha el audio y escribe la frase correctamente. ¡Cuidado con la ortografía!")
-
-# --- BASE DE DATOS DE FRASES ---
-# Puedes añadir o cambiar estas frases cuando quieras
+# --- FRASES DEL EXAMEN ---
 frases = [
     "El profesor explica la lección",
     "Mañana vamos a ir a la playa",
@@ -17,46 +12,49 @@ frases = [
     "El español es un idioma muy musical"
 ]
 
-# Usamos el "session_state" para que la página no se reinicie al azar
-if 'indice' not in st.session_state:
-    st.session_state.indice = 0
+# Inicializar el estado de la sesión si no existe
+if 'paso' not in st.session_state:
+    st.session_state.paso = 0
 if 'puntos' not in st.session_state:
     st.session_state.puntos = 0
 
-# --- LÓGICA DEL EJERCICIO ---
-if st.session_state.indice < len(frases):
-    frase_actual = frases[st.session_state.indice]
+st.title("🎧 Ejercicio de Dictado Interactivo")
+
+# Verificar si aún hay frases
+if st.session_state.paso < len(frases):
+    frase_actual = frases[st.session_state.paso]
     
-    # 1. Generar el audio
+    st.write(f"### Frase {st.session_state.paso + 1} de {len(frases)}")
+    
+    # Generar y reproducir audio
     tts = gTTS(text=frase_actual, lang='es', tld='es')
     tts.save("dictado.mp3")
-    
-    # 2. Mostrar el reproductor de audio
     st.audio("dictado.mp3")
-    
-    # 3. Entrada de texto del alumno
-    respuesta = st.text_input("Escribe lo que escuchaste:", key=f"input_{st.session_state.indice}")
-    
-    if st.button("Comprobar"):
-        # Limpieza básica de la respuesta
+
+    # Formulario para evitar que la página se refresque antes de tiempo
+    with st.form(key='mi_formulario'):
+        respuesta = st.text_input("Escribe lo que escuchas:")
+        boton_enviar = st.form_submit_button(label='Comprobar y Continuar')
+
+    if boton_enviar:
+        # Comparar respuestas
         if respuesta.lower().strip().rstrip('.') == frase_actual.lower().strip().rstrip('.'):
-            st.success("✨ ¡Excelente! Lo has logrado.")
+            st.success("✨ ¡Excelente! Es correcto.")
             st.session_state.puntos += 1
         else:
-            st.error(f"❌ Casi... La frase correcta era: '{frase_actual}'")
+            st.error(f"❌ Incorrecto. La frase era: '{frase_actual}'")
         
-        # Botón para pasar a la siguiente
-        if st.button("Siguiente frase ➡️"):
-            st.session_state.indice += 1
-            st.rerun()
+        # Avanzar al siguiente paso
+        st.session_state.paso += 1
+        st.button("Hacer siguiente ejercicio") # Botón simple para refrescar
 
 else:
-    # --- RESULTADOS FINALES ---
+    # --- PANTALLA FINAL ---
     st.balloons()
-    st.header("¡Examen terminado! 🎉")
-    st.subheader(f"Tu puntuación: {st.session_state.puntos} de {len(frases)}")
+    st.header("🎊 ¡Has terminado el dictado!")
+    st.subheader(f"Tu nota final: {st.session_state.puntos} / {len(frases)}")
     
-    if st.button("Reiniciar ejercicio"):
-        st.session_state.indice = 0
+    if st.button("Reiniciar desde el principio"):
+        st.session_state.paso = 0
         st.session_state.puntos = 0
         st.rerun()
