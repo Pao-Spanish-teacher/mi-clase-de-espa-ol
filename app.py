@@ -1,65 +1,62 @@
+import streamlit as st
 from gtts import gTTS
-import ipywidgets as widgets
-from IPython.display import Audio, display, clear_output
 import os
 
-# 1. Tu lista de frases para el examen
-examen_frases = [
-    "La casa es grande",
-    "El gato duerme en el sofá",
-    "Mañana comeremos paella",
-    "Me gusta aprender programación",
-    "El español es un idioma hermoso"
+# --- CONFIGURACIÓN DE LA PÁGINA ---
+st.set_page_config(page_title="Mi Clase de Español", page_icon="🎓")
+
+st.title("🎧 Ejercicio de Dictado")
+st.write("Escucha el audio y escribe la frase correctamente. ¡Cuidado con la ortografía!")
+
+# --- BASE DE DATOS DE FRASES ---
+# Puedes añadir o cambiar estas frases cuando quieras
+frases = [
+    "El profesor explica la lección",
+    "Mañana vamos a ir a la playa",
+    "Me gusta mucho comer fruta",
+    "El español es un idioma muy musical"
 ]
 
-# Variables de control
-puntos = 0
-indice_pregunta = 0
+# Usamos el "session_state" para que la página no se reinicie al azar
+if 'indice' not in st.session_state:
+    st.session_state.indice = 0
+if 'puntos' not in st.session_state:
+    st.session_state.puntos = 0
 
-def generar_audio(texto):
-    tts = gTTS(text=texto, lang='es', tld='com.mx') # Acento mexicano
-    tts.save("dictado_examen.mp3")
-    return "dictado_examen.mp3"
-
-def verificar_y_avanzar(b):
-    global puntos, indice_pregunta
+# --- LÓGICA DEL EJERCICIO ---
+if st.session_state.indice < len(frases):
+    frase_actual = frases[st.session_state.indice]
     
-    # Limpiar espacios y minúsculas
-    respuesta_usuario = entrada_texto.value.lower().strip().rstrip('.')
-    respuesta_correcta = examen_frases[indice_pregunta].lower().strip().rstrip('.')
+    # 1. Generar el audio
+    tts = gTTS(text=frase_actual, lang='es', tld='es')
+    tts.save("dictado.mp3")
     
-    # Evaluar
-    if respuesta_usuario == respuesta_correcta:
-        puntos += 1
-        mensaje = "✅ ¡Correcto!"
-    else:
-        mensaje = f"❌ Error. Era: '{examen_frases[indice_pregunta]}'"
+    # 2. Mostrar el reproductor de audio
+    st.audio("dictado.mp3")
     
-    indice_pregunta += 1
-    entrada_texto.value = "" # Limpiar el cuadro para la siguiente
+    # 3. Entrada de texto del alumno
+    respuesta = st.text_input("Escribe lo que escuchaste:", key=f"input_{st.session_state.indice}")
     
-    # Mostrar siguiente o resultado final
-    clear_output(wait=True)
-    if indice_pregunta < len(examen_frases):
-        print(mensaje)
-        mostrar_interfaz()
-    else:
-        print(f"--- EXAMEN FINALIZADO ---")
-        print(f"Puntuación final: {puntos} de {len(examen_frases)}")
-        if puntos == len(examen_frases):
-            print("🏆 ¡Eres un experto en ortografía!")
+    if st.button("Comprobar"):
+        # Limpieza básica de la respuesta
+        if respuesta.lower().strip().rstrip('.') == frase_actual.lower().strip().rstrip('.'):
+            st.success("✨ ¡Excelente! Lo has logrado.")
+            st.session_state.puntos += 1
+        else:
+            st.error(f"❌ Casi... La frase correcta era: '{frase_actual}'")
+        
+        # Botón para pasar a la siguiente
+        if st.button("Siguiente frase ➡️"):
+            st.session_state.indice += 1
+            st.rerun()
 
-def mostrar_interfaz():
-    print(f"Frase {indice_pregunta + 1} de {len(examen_frases)}")
-    audio_path = generar_audio(examen_frases[indice_pregunta])
-    display(Audio(audio_path, autoplay=False))
-    display(entrada_texto)
-    display(boton_enviar)
-
-# Crear componentes
-entrada_texto = widgets.Text(placeholder='Escribe lo que escuchas...')
-boton_enviar = widgets.Button(description="Siguiente frase", button_style='info')
-boton_enviar.on_click(verificar_y_avanzar)
-
-# Iniciar examen
-mostrar_interfaz()
+else:
+    # --- RESULTADOS FINALES ---
+    st.balloons()
+    st.header("¡Examen terminado! 🎉")
+    st.subheader(f"Tu puntuación: {st.session_state.puntos} de {len(frases)}")
+    
+    if st.button("Reiniciar ejercicio"):
+        st.session_state.indice = 0
+        st.session_state.puntos = 0
+        st.rerun()
