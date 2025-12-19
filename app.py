@@ -2,20 +2,21 @@ import streamlit as st
 from gtts import gTTS
 import os
 
-# --- 1. CONFIGURACIÓN DE PÁGINA Y DISEÑO ---
+# --- 1. CONFIGURACIÓN DE PÁGINA ---
 st.set_page_config(page_title="Pao- Spanish- Teacher", page_icon="🎓", layout="wide")
 
+# --- 2. DISEÑO VISUAL (CSS) ---
 st.markdown("""
     <style>
     .stApp { background: linear-gradient(135deg, #e0f2fe 0%, #fdfcfb 100%); }
     section[data-testid="stSidebar"] { background-color: #ffffff !important; border-right: 3px solid #1E88E5; }
     h1 { color: #1E88E5 !important; font-weight: 800; }
     .stTabs { background-color: rgba(255, 255, 255, 0.8); padding: 25px; border-radius: 20px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); }
-    .stButton>button { background-color: #1E88E5; color: white; border-radius: 12px; font-weight: bold; width: 100%; }
+    .stButton>button { background-color: #1E88E5; color: white; border-radius: 12px; font-weight: bold; }
     </style>
     """, unsafe_allow_html=True)
 
-# --- 2. CONTROL DE ACCESO ---
+# --- 3. CONTROL DE ACCESO ---
 CONTRASEÑA = "pao_premium"
 if "auth" not in st.session_state: st.session_state.auth = False
 
@@ -29,21 +30,19 @@ if not st.session_state.auth:
         else: st.error("❌ Clave incorrecta")
     st.stop()
 
-# --- 3. BARRA LATERAL (LOGO Y MENÚ) ---
+# --- 4. BARRA LATERAL ---
 with st.sidebar:
     try: st.image("logo.png", width=180)
-    except: st.warning("⚠️ Sube 'logo.png' a GitHub")
+    except: st.warning("⚠️ Sube 'logo.png'")
     st.title("Pao- Spanish- Teacher")
     st.write("---")
     menu = st.radio("Navegación:", ["Inicio", "Lecciones", "Mi Progreso", "Contacto"])
-    st.write("---")
     if st.button("Cerrar Sesión"):
         st.session_state.auth = False
         st.rerun()
 
-# --- 4. SECCIONES DEL MENÚ ---
+# --- 5. LÓGICA DE SECCIONES ---
 
-# --- INICIO ---
 if menu == "Inicio":
     st.title("¡Bienvenida a tu Academia! ✨")
     col1, col2 = st.columns([1, 2])
@@ -51,77 +50,98 @@ if menu == "Inicio":
         try: st.image("foto_pao.png", width=300)
         except: st.info("ℹ️ Sube 'foto_pao.png'")
     with col2:
-        st.subheader("Aprende español con material original")
-        st.write("¡Hola! Soy Pao. Aquí tienes todo el material exclusivo para tus clases.")
+        st.subheader("Tu espacio de aprendizaje de español")
+        st.write("Selecciona 'Lecciones' en el menú para comenzar con los temas del curso.")
 
-# --- LECCIONES (TODO INTEGRADO AQUÍ) ---
 elif menu == "Lecciones":
-    st.title("📚 Centro de Aprendizaje")
-    
-    # Selector de tipos de lección
-    tipo_leccion = st.selectbox("¿Qué quieres practicar hoy?", 
-                                ["Tema 1: Saludos (Gramática y Dictado)", 
-                                 "Tema 2: El viaje de Luna (Cuento Narrado)"])
+    st.title("📚 Temas del Curso")
+    # LISTA DE TEMAS PRINCIPALES
+    tema_seleccionado = st.selectbox(
+        "¿Qué tema quieres estudiar hoy?", 
+        ["Selecciona un tema...", "Saludos", "Números", "Alfabeto"]
+    )
+
     st.write("---")
 
-    # OPCIÓN 1: GRAMÁTICA Y DICTADO
-    if tipo_leccion == "Tema 1: Saludos (Gramática y Dictado)":
-        st.header("📍 Saludos y Presentaciones")
-        t1, t2, t3 = st.tabs(["📺 Video Clase", "🎧 Dictado", "✍️ Quiz"])
+    # --- DESARROLLO DEL TEMA: SALUDOS ---
+    if tema_seleccionado == "Saludos":
+        st.header("📍 Tema: Los Saludos")
         
-        with t1:
-            try: st.video("tema1_video.mp4")
-            except: st.info("🎥 Sube 'tema1_video.mp4'")
-        
-        with t2:
-            st.subheader("Práctica de Escucha")
-            frase = "Mucho gusto, soy Pao"
-            if st.button("Reproducir Dictado"):
-                tts = gTTS(text=frase, lang='es')
-                tts.save("audio.mp3")
-                st.audio("audio.mp3")
-            resp = st.text_input("¿Qué escuchaste?")
-            if st.button("Comprobar"):
-                if resp.lower().strip() == frase.lower().strip(): st.success("¡Perfecto!")
-                else: st.error(f"Era: {frase}")
-        
-        with t3:
-            q = st.radio("¿Cómo se dice 'Good morning'?", ["Hola", "Buenos días", "Adiós"])
+        # Aquí creamos todas las herramientas en pestañas para este tema
+        t_video, t_dictado, t_cuento, t_nombres, t_quiz, t_print = st.tabs([
+            "📺 Video Clase", 
+            "🎧 Dictado", 
+            "📖 El Cuento", 
+            "🖼️ Vocabulario (Nombres)", 
+            "✍️ Selección Simple", 
+            "📄 Para Imprimir"
+        ])
+
+        with t_video:
+            st.subheader("Video Principal de Saludos")
+            try: st.video("saludos_clase.mp4")
+            except: st.info("🎥 Sube 'saludos_clase.mp4' a GitHub")
+
+        with t_dictado:
+            st.subheader("Práctica de Escucha (Dictado)")
+            frase_saludo = "Hola, ¿cómo estás?"
+            if st.button("🔊 Escuchar Dictado"):
+                tts = gTTS(text=frase_saludo, lang='es')
+                tts.save("dictado_saludos.mp3")
+                st.audio("dictado_saludos.mp3")
+            resp_dictado = st.text_input("Escribe lo que escuchas:", key="d_saludos")
+            if st.button("Comprobar Dictado"):
+                if resp_dictado.lower().strip() == frase_saludo.lower().strip(): st.success("¡Excelente!")
+                else: st.error(f"La frase era: {frase_saludo}")
+
+        with t_cuento:
+            st.subheader("Videocuento Narrado")
+            try: st.video("cuento_saludos.mp4")
+            except: st.info("🎥 Sube 'cuento_saludos.mp4'")
+            with st.expander("Leer texto del cuento"):
+                st.write("Había una vez una niña llamada Ana que saludaba a todos...")
+
+        with t_nombres:
+            st.subheader("¿Cómo se llama?")
+            st.write("Escribe el nombre correcto para cada imagen:")
+            col_img1, col_img2 = st.columns(2)
+            with col_img1:
+                try: st.image("img_saludo1.png", width=200)
+                except: st.info("Sube 'img_saludo1.png'")
+                nombre1 = st.text_input("Nombre de la acción 1:", key="n1")
+            with col_img2:
+                try: st.image("img_saludo2.png", width=200)
+                except: st.info("Sube 'img_saludo2.png'")
+                nombre2 = st.text_input("Nombre de la acción 2:", key="n2")
+
+        with t_quiz:
+            st.subheader("Selección Simple")
+            opcion = st.radio("¿Cuál es un saludo de mañana?", ["Buenas noches", "Buenos días", "Hola"], key="q_saludos")
             if st.button("Validar Respuesta"):
-                if q == "Buenos días": st.success("✅ ¡Correcto!")
-                else: st.error("❌ Intenta de nuevo")
+                if opcion == "Buenos días": st.success("✅ ¡Correcto!")
+                else: st.error("❌ Intenta otra vez")
 
-    # OPCIÓN 2: CUENTOS
-    elif tipo_leccion == "Tema 2: El viaje de Luna (Cuento Narrado)":
-        st.header("📖 Videocuento: El viaje de Luna")
-        c1, c2, c3 = st.tabs(["📺 Ver Cuento", "✍️ Comprensión", "📄 Ficha PDF"])
-        
-        with c1:
-            try: st.video("cuento_luna.mp4")
-            except: st.info("🎥 Sube 'cuento_luna.mp4'")
-            with st.expander("Leer el texto del cuento"):
-                st.write("Había una vez una estrella llamada Luna...")
-
-        with c2:
-            p1 = st.radio("¿Quién es la protagonista?", ["Una estrella", "Un gato", "Una niña"])
-            if st.button("Corregir Actividad"):
-                if p1 == "Una estrella": st.success("🌟 ¡Muy bien!")
-                else: st.error("Vuelve a ver el video.")
-
-        with c3:
-            st.subheader("Material para imprimir")
+        with t_print:
+            st.subheader("Material Descargable")
+            st.write("Descarga la ficha de actividades para practicar en papel.")
             try:
-                with open("ficha_luna.pdf", "rb") as f:
-                    st.download_button("📩 Descargar Ficha (PDF)", f, "Ficha_Luna.pdf")
-            except: st.warning("ℹ️ Sube 'ficha_luna.pdf' para activar la descarga.")
+                with open("ficha_saludos.pdf", "rb") as f:
+                    st.download_button("📩 Descargar Ficha (PDF)", f, "Ficha_Saludos_Pao.pdf")
+            except: st.warning("ℹ️ Sube 'ficha_saludos.pdf' para activar la descarga.")
 
-# --- PROGRESO ---
+    # --- ESPACIO PARA OTROS TEMAS ---
+    elif tema_seleccionado == "Números":
+        st.header("📍 Tema: Los Números")
+        st.info("Contenido en construcción... pronto verás los videos y ejercicios aquí.")
+
+    elif tema_seleccionado == "Alfabeto":
+        st.header("📍 Tema: El Alfabeto")
+        st.info("Contenido en construcción...")
+
 elif menu == "Mi Progreso":
-    st.title("🏆 Tu Progreso")
-    st.write("Sigue aprendiendo para completar tu barra de logros.")
-    st.progress(40)
+    st.title("🏆 Mi Progreso")
+    st.progress(20)
 
-# --- CONTACTO ---
 elif menu == "Contacto":
     st.title("📩 Contacto")
-    st.write("Dudas: contacto@paospanish.com")
+    st.write("Email: contacto@paospanish.com")
