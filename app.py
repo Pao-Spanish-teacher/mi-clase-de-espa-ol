@@ -56,8 +56,6 @@ if menu == "Inicio":
         2. **Interactúa:** Escucha los cuentos y haz los dictados.
         3. **Practica offline:** Descarga las fichas PDF.
         """)
-        st.info("**'El idioma es el mapa de una cultura. ¡Estoy aquí para ayudarte a recorrerlo!'**")
-# --- MENSAJE DE MOTIVACIÓN ---
         st.info("""
         **"El idioma es el mapa de una cultura. ¡Estoy aquí para ayudarte a recorrerlo con confianza!"** *No importa qué tan rápido vayas, lo importante es no detenerse. ¡Vamos a lograrlo juntos!*
         """)
