@@ -17,7 +17,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # --- 3. CONTROL DE ACCESO ---
-CONTRASEÑA = "pao_premium"
+CONTRASEÑA = "123456"
 if "auth" not in st.session_state: 
     st.session_state.auth = False
 
