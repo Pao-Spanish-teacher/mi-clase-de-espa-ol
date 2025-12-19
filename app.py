@@ -73,15 +73,15 @@ elif menu == "Lecciones":
             t_video, t_dictado, t_cuento, t_quiz, t_print = st.tabs(["📺 Video", "🎧 Dictado", "📖 Cuento", "✍️ Quiz", "📄 PDF"])
 
            with t_video:
-    st.subheader("Video Principal de Saludos")
+               st.subheader("Video Principal de Saludos")
     
-    # He convertido tu link de Short a un link de video normal que Streamlit entiende perfecto:
-    url_video = "https://www.youtube.com/watch?v=dD7dw9MN4H0"
+               # He convertido tu link de Short a un link de video normal que Streamlit entiende perfecto:
+               url_video = "https://www.youtube.com/watch?v=dD7dw9MN4H0"
     
-    try:
-        st.video(url_video)
-    except:
-        st.info(f"🎥 No se pudo cargar el video. Puedes verlo aquí: {url_video}")
+           try:
+               st.video(url_video)
+           except:
+                  st.info(f"🎥 No se pudo cargar el video. Puedes verlo aquí: {url_video}")
 
             with t_dictado:
                 st.subheader("🎧 Desafío de 5 Frases")
