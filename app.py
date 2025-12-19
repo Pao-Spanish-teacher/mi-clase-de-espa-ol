@@ -165,6 +165,9 @@ elif menu == "Mi Progreso":
 
 elif menu == "Contacto":
     st.title("📩 Contacto")
-    st.write("¿Tienes alguna duda o necesitas ayuda técnica? Escríbeme directamente:")
-    st.info("📧 Email: pao.mzh16@gmail.com")
-st.markdown("📧 Email: [pao.mzh16@gmail.com](mailto:pao.mzh16@gmail.com)")
+    st.write("Si tienes alguna duda, escríbeme directamente:")
+    
+    # Esto crea un recuadro visualmente atractivo con el correo
+    st.success("📧 **pao.mzh16@gmail.com**")
+    
+    st.write("Estaré encantada de ayudarte con tu proceso de aprendizaje.")
