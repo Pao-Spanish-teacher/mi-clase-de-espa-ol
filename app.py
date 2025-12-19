@@ -73,8 +73,8 @@ elif menu == "Lecciones":
             t_video, t_dictado, t_cuento, t_quiz, t_print = st.tabs(["📺 Video", "🎧 Dictado", "📖 Cuento", "✍️ Quiz", "📄 PDF"])
 
             with t_video:
-                try: st.video("saludos_clase.mp4")
-                except: st.info("🎥 Sube 'saludos_clase.mp4'")
+                try: st.video("https://youtube.com/shorts/dD7dw9MN4H0?feature=share")
+                except: st.info("🎥 Sube 'https://youtube.com/shorts/dD7dw9MN4H0?feature=share'")
 
             with t_dictado:
                 st.subheader("🎧 Desafío de 5 Frases")
