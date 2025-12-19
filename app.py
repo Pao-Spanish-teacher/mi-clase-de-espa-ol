@@ -65,14 +65,15 @@ elif menu == "Lecciones":
     st.title("📚 Centro de Capacitación")
     nivel = st.selectbox("Primero, elige tu nivel:", ["Selecciona...", "Nivel A1 (Principiante)", "Nivel A2", "Nivel B1"])
 
-    if nivel == "Nivel A1 (Principiante)":
+   if nivel == "Nivel A1 (Principiante)":
         tema_a1 = st.selectbox("Elige un tema:", ["Selecciona...", "Saludos", "Números"])
 
         if tema_a1 == "Saludos":
             st.header("📍 Tema: Los Saludos")
+            # Creamos las pestañas
             t_video, t_dictado, t_cuento, t_quiz, t_print = st.tabs(["📺 Video", "🎧 Dictado", "📖 Cuento", "✍️ Quiz", "📄 PDF"])
 
-         with t_video:
+            with t_video:
                 st.subheader("Video Principal de Saludos")
                 # El link corregido de tu video
                 url_video = "https://www.youtube.com/watch?v=dD7dw9MN4H0"
