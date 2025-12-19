@@ -165,4 +165,5 @@ elif menu == "Mi Progreso":
 
 elif menu == "Contacto":
     st.title("📩 Contacto")
-    st.write("Email: contacto@paospanish.com")
+    st.write("¿Tienes alguna duda o necesitas ayuda técnica? Escríbeme directamente:")
+    st.info("📧 Email: pao.mzh16@gmail.com")
