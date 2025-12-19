@@ -75,15 +75,43 @@ if menu == "Inicio":
         
         st.write("👈 Selecciona **'Lecciones'** en el menú para comenzar tu viaje.")
 elif menu == "Lecciones":
-    st.title("📚 Temas del Curso")
-    # LISTA DE TEMAS PRINCIPALES
-    tema_seleccionado = st.selectbox(
-        "¿Qué tema quieres estudiar hoy?", 
-        ["Selecciona un tema...", "Saludos", "Números", "Alfabeto"]
+    st.title("📚 Centro de Capacitación por Niveles")
+
+    # 1. Selector de Nivel
+    nivel = st.selectbox(
+        "Primero, elige tu nivel de español:",
+        ["Selecciona nivel...", "Nivel A1 (Principiante)", "Nivel A2 (Básico)", "Nivel B1 (Intermedio)"]
     )
 
     st.write("---")
 
+    # 2. Lógica por Nivel
+    if nivel == "Nivel A1 (Principiante)":
+        st.subheader("🟢 Contenido Nivel A1")
+        
+        # Aquí salen los temas específicos de A1
+        tema_a1 = st.selectbox(
+            "¿Qué tema de A1 quieres estudiar?",
+            ["Selecciona un tema...", "Saludos", "Los Números", "El Alfabeto"]
+        )
+
+        if tema_a1 == "Saludos":
+            st.header("📍 Tema: Los Saludos")
+            # AQUÍ PEGAS TODAS LAS PESTAÑAS (TABS) QUE YA HICIMOS
+            t_video, t_dictado, t_cuento, t_nombres, t_quiz, t_print = st.tabs([
+                "📺 Video Clase", "🎧 Dictado", "📖 El Cuento", 
+                "🖼️ Vocabulario", "✍️ Selección Simple", "📄 Para Imprimir"
+            ])
+            # ... (Aquí va el resto del código de las pestañas que ya tienes)
+
+    elif nivel == "Nivel A2 (Básico)":
+        st.subheader("🟡 Contenido Nivel A2")
+        tema_a2 = st.selectbox("¿Qué tema de A2 quieres estudiar?", ["Selecciona...", "Pasado Simple", "La Familia"])
+        st.info("Próximamente contenido para A2...")
+
+    elif nivel == "Nivel B1 (Intermedio)":
+        st.subheader("🔴 Contenido Nivel B1")
+        st.info("Próximamente contenido para B1...")
     # --- DESARROLLO DEL TEMA: SALUDOS ---
     if tema_seleccionado == "Saludos":
         st.header("📍 Tema: Los Saludos")
