@@ -60,7 +60,7 @@ if menu == "Inicio":
         ### 🚀 ¿Cómo aprovechar tus clases?
         1. **Mira el video:** Comienza siempre con la video-clase.
         2. **Interactúa:** Escucha los cuentos y haz los dictados.
-        3. **Practica offline:** Descarga las fichas PDF.
+        3. **Practica offline:** Descarga las fichas PDF de teoría y ejercicios.
         """)
         st.info("**'El idioma es el mapa de una cultura. ¡Estoy aquí para ayudarte a recorrerlo!'**")
 
@@ -73,76 +73,80 @@ elif menu == "Lecciones":
 
         if tema_a1 == "Saludos":
             st.header("📍 Tema: Los Saludos")
-            t_video, t_dictado, t_cuento, t_quiz, t_print = st.tabs(["📺 Video", "🎧 Dictado", "📖 Cuento", "✍️ Quiz", "📄 PDF"])
+            # Pestañas basadas en tu minilibro
+            t_video, t_dictado, t_quiz, t_print = st.tabs(["📺 Video Clase", "🎧 Dictado", "✍️ Quiz", "📄 Materiales PDF"])
 
             with t_video:
                 st.subheader("Video Principal de Saludos")
-                # El link corregido de tu video de YouTube
                 url_video = "https://www.youtube.com/watch?v=dD7dw9MN4H0"
                 st.video(url_video)
-                st.write("Mira este video para aprender saludos prácticos.")
+                st.write("Mira este video para repasar los saludos básicos y respuestas comunes.")
 
             with t_dictado:
-                st.subheader("🎧 Desafío de 5 Frases")
-                frases = ["Hola, ¿cómo estás?", "Buenos días", "Mucho gusto", "¿Cómo te llamas?", "Hasta mañana"]
+                st.subheader("🎧 Desafío de Dictado")
+                # Frases extraídas de tu material
+                frases = ["Buenos días", "Buenas tardes", "¿Cómo estás?", "Mucho gusto", "Hasta mañana"]
                 
                 if 'idx' not in st.session_state: 
                     st.session_state.idx = 0
                 
                 if st.session_state.idx < len(frases):
                     actual = frases[st.session_state.idx]
-                    st.write(f"Frase {st.session_state.idx + 1} de 5")
+                    st.write(f"Frase {st.session_state.idx + 1} de {len(frases)}")
                     if st.button("🔊 Escuchar"):
                         tts = gTTS(text=actual, lang='es')
                         tts.save("d.mp3")
                         st.audio("d.mp3")
                     
-                    resp = st.text_input("Escribe lo que escuchas:", key=f"dict_input_{st.session_state.idx}")
+                    resp = st.text_input("Escribe lo que escuchas:", key=f"d_in_{st.session_state.idx}")
                     
                     if st.button("Comprobar"):
-                        # Comparamos ignorando mayúsculas y espacios
                         if resp.lower().strip() == actual.lower().strip():
                             st.success("¡Excelente!")
                             st.session_state.idx += 1
                             st.rerun()
                         else: 
-                            st.error(f"Todavía no es correcto. ¡Inténtalo de nuevo!")
+                            st.error("Inténtalo de nuevo. Presta atención a los acentos.")
                 else:
                     st.balloons()
                     st.success("🎊 ¡Felicidades! Has completado el dictado.")
-                    if st.button("Reiniciar dictado"):
+                    if st.button("Reiniciar práctica"):
                         st.session_state.idx = 0
                         st.rerun()
 
-            with t_cuento:
-                st.subheader("Cuento Narrado")
-                # Aquí puedes poner otro link de YouTube para el cuento
-                st.video("https://www.youtube.com/watch?v=dD7dw9MN4H0") 
-
             with t_quiz:
-                st.subheader("Selección Simple")
-                q = st.radio("¿Cuál es un saludo de mañana?", ["Buenas noches", "Buenos días", "Hola"])
-                if st.button("Validar"):
-                    if q == "Buenos días":
+                st.subheader("Cuestionario de Repaso")
+                # Pregunta basada en la página 4 de tu PDF
+                preg1 = st.radio("¿Qué saludo es FORMAL (Usted)?", ["¡Hola!", "Buenos días, ¿Cómo está usted?", "¿Qué tal?"])
+                if st.button("Validar Pregunta"):
+                    if preg1 == "Buenos días, ¿Cómo está usted?":
                         st.snow()
-                        st.success("¡Correcto!")
+                        st.success("¡Correcto! Usamos 'Usted' con jefes o desconocidos.")
                     else:
-                        st.error("Sigue intentando.")
+                        st.error("Esa opción es informal. ¡Vuelve a revisar la página 4 de tu guía!")
 
             with t_print:
-                st.subheader("Material para imprimir")
-                try:
-                    with open("ficha_saludos.pdf", "rb") as f:
-                        st.download_button("📩 Descargar PDF", f, "Ficha_Saludos.pdf")
-                except:
-                    st.warning("ℹ️ Sube 'ficha_saludos.pdf' a GitHub para activar la descarga.")
+                st.subheader("📄 Materiales Descargables")
+                st.write("Descarga la guía teórica y la ficha de ejercicios práctica.")
+                
+                c1, c2 = st.columns(2)
+                with c1:
+                    st.info("📖 **Minilibro de Teoría**")
+                    try:
+                        with open("Libro_Saludos_A1.pdf", "rb") as f:
+                            st.download_button("Descargar Libro", f, "Libro_Saludos_Pao.pdf")
+                    except FileNotFoundError:
+                        st.warning("⚠️ Sube 'Libro_Saludos_A1.pdf' a GitHub")
 
-elif menu == "Mi Progreso":
-    st.title("🏆 Mi Progreso")
-    st.write("Completa lecciones para ver tu avance.")
-    st.progress(25)
+                with c2:
+                    st.success("✍️ **Ficha de Ejercicios**")
+                    try:
+                        with open("Ejercicios_Saludos_A1.pdf", "rb") as f:
+                            st.download_button("Descargar Ejercicios", f, "Ejercicios_Pao_Spanish.pdf")
+                    except FileNotFoundError:
+                        st.warning("⚠️ Sube 'Ejercicios_Saludos_A1.pdf' a GitHub")
 
 elif menu == "Contacto":
     st.title("📩 Contacto")
     st.markdown("📧 Email: [pao.mzh16@gmail.com](mailto:pao.mzh16@gmail.com)")
-    st.success("Responderé a tus dudas lo antes posible.")
+    st.success("Escríbeme si tienes dudas con los materiales de A1.")
