@@ -104,16 +104,54 @@ elif menu == "Lecciones":
             except: st.info("🎥 Sube 'saludos_clase.mp4' a GitHub")
 
         with t_dictado:
-            st.subheader("Práctica de Escucha (Dictado)")
-            frase_saludo = "Hola, ¿cómo estás?"
-            if st.button("🔊 Escuchar Dictado"):
-                tts = gTTS(text=frase_saludo, lang='es')
-                tts.save("dictado_saludos.mp3")
-                st.audio("dictado_saludos.mp3")
-            resp_dictado = st.text_input("Escribe lo que escuchas:", key="d_saludos")
-            if st.button("Comprobar Dictado"):
-                if resp_dictado.lower().strip() == frase_saludo.lower().strip(): st.success("¡Excelente!")
-                else: st.error(f"La frase era: {frase_saludo}")
+            st.subheader("🎧 Desafío de Dictado: 5 Frases")
+
+            # 1. Lista de tus 5 frases
+            lista_frases = [
+                "Hola, ¿cómo estás?",
+                "Buenos días",
+                "Mucho gusto",
+                "¿Cómo te llamas?",
+                "Hasta mañana"
+            ]
+
+            # 2. Inicializar el contador de frases si no existe
+            if 'indice_frase' not in st.session_state:
+                st.session_state.indice_frase = 0
+
+            # Verificamos si ya terminó todas las frases
+            if st.session_state.indice_frase < len(lista_frases):
+                frase_actual = lista_frases[st.session_state.indice_frase]
+                
+                st.write(f"### Frase {st.session_state.indice_frase + 1} de {len(lista_frases)}")
+                
+                # Botón para escuchar
+                if st.button("🔊 Escuchar frase"):
+                    tts = gTTS(text=frase_actual, lang='es')
+                    tts.save("dictado.mp3")
+                    st.audio("dictado.mp3")
+
+                # Entrada de texto
+                resp = st.text_input("Escribe lo que escuchaste:", key=f"input_{st.session_state.indice_frase}")
+
+                if st.button("Comprobar"):
+                    # Limpiamos espacios y mayúsculas para que no falle por un error simple
+                    if resp.lower().strip().replace(",", "").replace("¿", "").replace("?", "") == \
+                       frase_actual.lower().strip().replace(",", "").replace("¿", "").replace("?", ""):
+                        
+                        st.success("✨ ¡Correcto! Muy bien hecho.")
+                        # Avanzar a la siguiente frase
+                        st.session_state.indice_frase += 1
+                        st.button("Siguiente frase ➡️")
+                    else:
+                        st.error("Todavía no es correcto. ¡Escucha de nuevo!")
+            
+            else:
+                st.balloons()
+                st.success("🎊 ¡Felicidades! Has completado el dictado de hoy.")
+                if st.button("Repetir dictado desde el inicio"):
+                    st.session_state.indice_frase = 0
+                    st.rerun()
 
         with t_cuento:
             st.subheader("Videocuento Narrado")
