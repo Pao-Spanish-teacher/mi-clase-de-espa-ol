@@ -18,7 +18,8 @@ st.markdown("""
 
 # --- 3. CONTROL DE ACCESO ---
 CONTRASEÑA = "pao_premium"
-if "auth" not in st.session_state: st.session_state.auth = False
+if "auth" not in st.session_state: 
+    st.session_state.auth = False
 
 if not st.session_state.auth:
     st.title("🔐 Acceso Privado - Pao- Spanish- Teacher")
@@ -27,13 +28,16 @@ if not st.session_state.auth:
         if clave == CONTRASEÑA:
             st.session_state.auth = True
             st.rerun()
-        else: st.error("❌ Clave incorrecta")
+        else: 
+            st.error("❌ Clave incorrecta")
     st.stop()
 
 # --- 4. BARRA LATERAL ---
 with st.sidebar:
-    try: st.image("logo.png", width=180)
-    except: st.warning("⚠️ Sube 'logo.png'")
+    try: 
+        st.image("logo.png", width=180)
+    except: 
+        st.warning("⚠️ Sube 'logo.png'")
     st.title("Pao- Spanish- Teacher")
     menu = st.radio("Navegación:", ["Inicio", "Lecciones", "Mi Progreso", "Contacto"])
     if st.button("Cerrar Sesión"):
@@ -46,8 +50,10 @@ if menu == "Inicio":
     st.title("¡Bienvenida a tu Academia! ✨")
     col1, col2 = st.columns([1, 2])
     with col1:
-        try: st.image("foto_pao.png", width=300)
-        except: st.info("ℹ️ Sube 'foto_pao.png'")
+        try: 
+            st.image("foto_pao.png", width=300)
+        except: 
+            st.info("ℹ️ Sube 'foto_pao.png'")
     with col2:
         st.subheader("Tu espacio de aprendizaje de español")
         st.markdown("""
@@ -56,67 +62,85 @@ if menu == "Inicio":
         2. **Interactúa:** Escucha los cuentos y haz los dictados.
         3. **Practica offline:** Descarga las fichas PDF.
         """)
-        st.info("""
-        **"El idioma es el mapa de una cultura. ¡Estoy aquí para ayudarte a recorrerlo con confianza!"** *No importa qué tan rápido vayas, lo importante es no detenerse. ¡Vamos a lograrlo juntos!*
-        """)
-        
-        st.write("👈 Selecciona **'Lecciones'** en el menú para comenzar tu viaje.")
+        st.info("**'El idioma es el mapa de una cultura. ¡Estoy aquí para ayudarte a recorrerlo!'**")
+
 elif menu == "Lecciones":
     st.title("📚 Centro de Capacitación")
     nivel = st.selectbox("Primero, elige tu nivel:", ["Selecciona...", "Nivel A1 (Principiante)", "Nivel A2", "Nivel B1"])
 
-   if nivel == "Nivel A1 (Principiante)":
+    if nivel == "Nivel A1 (Principiante)":
         tema_a1 = st.selectbox("Elige un tema:", ["Selecciona...", "Saludos", "Números"])
 
         if tema_a1 == "Saludos":
             st.header("📍 Tema: Los Saludos")
-            # Creamos las pestañas
             t_video, t_dictado, t_cuento, t_quiz, t_print = st.tabs(["📺 Video", "🎧 Dictado", "📖 Cuento", "✍️ Quiz", "📄 PDF"])
 
             with t_video:
                 st.subheader("Video Principal de Saludos")
-                # El link corregido de tu video
+                # El link corregido de tu video de YouTube
                 url_video = "https://www.youtube.com/watch?v=dD7dw9MN4H0"
                 st.video(url_video)
-                st.write("Mira este video para aprender saludos como 'Hola, buenos días'.")
+                st.write("Mira este video para aprender saludos prácticos.")
 
             with t_dictado:
                 st.subheader("🎧 Desafío de 5 Frases")
                 frases = ["Hola, ¿cómo estás?", "Buenos días", "Mucho gusto", "¿Cómo te llamas?", "Hasta mañana"]
-                if 'idx' not in st.session_state: st.session_state.idx = 0
+                
+                if 'idx' not in st.session_state: 
+                    st.session_state.idx = 0
                 
                 if st.session_state.idx < len(frases):
                     actual = frases[st.session_state.idx]
                     st.write(f"Frase {st.session_state.idx + 1} de 5")
                     if st.button("🔊 Escuchar"):
-                        gTTS(text=actual, lang='es').save("d.mp3")
+                        tts = gTTS(text=actual, lang='es')
+                        tts.save("d.mp3")
                         st.audio("d.mp3")
-                    resp = st.text_input("Escribe:", key=f"d{st.session_state.idx}")
+                    
+                    resp = st.text_input("Escribe lo que escuchas:", key=f"dict_input_{st.session_state.idx}")
+                    
                     if st.button("Comprobar"):
+                        # Comparamos ignorando mayúsculas y espacios
                         if resp.lower().strip() == actual.lower().strip():
-                            st.success("¡Bien!")
+                            st.success("¡Excelente!")
                             st.session_state.idx += 1
                             st.rerun()
-                        else: st.error("Intenta de nuevo")
+                        else: 
+                            st.error(f"Todavía no es correcto. ¡Inténtalo de nuevo!")
                 else:
                     st.balloons()
-                    st.success("¡Completado!")
-                    if st.button("Reiniciar"): st.session_state.idx = 0; st.rerun()
+                    st.success("🎊 ¡Felicidades! Has completado el dictado.")
+                    if st.button("Reiniciar dictado"):
+                        st.session_state.idx = 0
+                        st.rerun()
 
             with t_cuento:
-                try: st.video("cuento_saludos.mp4")
-                except: st.info("🎥 Sube 'cuento_saludos.mp4'")
+                st.subheader("Cuento Narrado")
+                # Aquí puedes poner otro link de YouTube para el cuento
+                st.video("https://www.youtube.com/watch?v=dD7dw9MN4H0") 
 
             with t_quiz:
-                q = st.radio("Saludo de mañana:", ["Noches", "Días", "Hola"])
+                st.subheader("Selección Simple")
+                q = st.radio("¿Cuál es un saludo de mañana?", ["Buenas noches", "Buenos días", "Hola"])
                 if st.button("Validar"):
-                    if q == "Días": st.snow(); st.success("¡Correcto!")
+                    if q == "Buenos días":
+                        st.snow()
+                        st.success("¡Correcto!")
+                    else:
+                        st.error("Sigue intentando.")
 
             with t_print:
+                st.subheader("Material para imprimir")
                 try:
                     with open("ficha_saludos.pdf", "rb") as f:
-                        st.download_button("📩 Descargar PDF", f, "Ficha.pdf")
-                except: st.warning("Sube 'ficha_saludos.pdf'")
+                        st.download_button("📩 Descargar PDF", f, "Ficha_Saludos.pdf")
+                except:
+                    st.warning("ℹ️ Sube 'ficha_saludos.pdf' a GitHub para activar la descarga.")
+
+elif menu == "Mi Progreso":
+    st.title("🏆 Mi Progreso")
+    st.write("Completa lecciones para ver tu avance.")
+    st.progress(25)
 
 elif menu == "Contacto":
     st.title("📩 Contacto")
