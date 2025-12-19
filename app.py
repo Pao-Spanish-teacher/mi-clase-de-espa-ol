@@ -167,3 +167,4 @@ elif menu == "Contacto":
     st.title("📩 Contacto")
     st.write("¿Tienes alguna duda o necesitas ayuda técnica? Escríbeme directamente:")
     st.info("📧 Email: pao.mzh16@gmail.com")
+st.markdown("📧 Email: [pao.mzh16@gmail.com](mailto:pao.mzh16@gmail.com)")
