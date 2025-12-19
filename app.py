@@ -57,7 +57,12 @@ if menu == "Inicio":
         3. **Practica offline:** Descarga las fichas PDF.
         """)
         st.info("**'El idioma es el mapa de una cultura. ¡Estoy aquí para ayudarte a recorrerlo!'**")
-
+# --- MENSAJE DE MOTIVACIÓN ---
+        st.info("""
+        **"El idioma es el mapa de una cultura. ¡Estoy aquí para ayudarte a recorrerlo con confianza!"** *No importa qué tan rápido vayas, lo importante es no detenerse. ¡Vamos a lograrlo juntos!*
+        """)
+        
+        st.write("👈 Selecciona **'Lecciones'** en el menú para comenzar tu viaje.")
 elif menu == "Lecciones":
     st.title("📚 Centro de Capacitación")
     nivel = st.selectbox("Primero, elige tu nivel:", ["Selecciona...", "Nivel A1 (Principiante)", "Nivel A2", "Nivel B1"])
