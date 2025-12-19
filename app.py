@@ -43,16 +43,37 @@ with st.sidebar:
 
 # --- 5. LÓGICA DE SECCIONES ---
 
+# --- INICIO ---
 if menu == "Inicio":
     st.title("¡Bienvenida a tu Academia! ✨")
+    
     col1, col2 = st.columns([1, 2])
+    
     with col1:
-        try: st.image("foto_pao.png", width=300)
-        except: st.info("ℹ️ Sube 'foto_pao.png'")
+        try: 
+            st.image("foto_pao.png", width=300)
+        except: 
+            st.info("ℹ️ Sube 'foto_pao.png'")
+            
     with col2:
         st.subheader("Tu espacio de aprendizaje de español")
-        st.write("Selecciona 'Lecciones' en el menú para comenzar con los temas del curso.")
+        
+        # --- PAUTAS SIMPLES ---
+        st.markdown("""
+        ### 🚀 ¿Cómo aprovechar tus clases?
+        1. **Mira el video:** Comienza siempre con la video-clase para entender el contexto.
+        2. **Interactúa:** Escucha los cuentos y haz los dictados en voz alta.
+        3. **Practica offline:** Descarga las fichas PDF para reforzar lo aprendido sin pantallas.
+        
+        ---
+        """)
 
+        # --- MENSAJE DE MOTIVACIÓN ---
+        st.info("""
+        **"El idioma es el mapa de una cultura. ¡Estoy aquí para ayudarte a recorrerlo con confianza!"** *No importa qué tan rápido vayas, lo importante es no detenerse. ¡Vamos a lograrlo juntos!*
+        """)
+        
+        st.write("👈 Selecciona **'Lecciones'** en el menú para comenzar tu viaje.")
 elif menu == "Lecciones":
     st.title("📚 Temas del Curso")
     # LISTA DE TEMAS PRINCIPALES
