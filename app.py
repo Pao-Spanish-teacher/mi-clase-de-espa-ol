@@ -2,29 +2,104 @@ import streamlit as st
 from gtts import gTTS
 import os
 
-# --- 1. CONFIGURACIÓN Y DATOS ---
+# --- 1. CONFIGURACIÓN Y DATOS MAESTROS ---
 st.set_page_config(page_title="Pao- Spanish- Teacher", page_icon="🎓", layout="wide")
 
-# Diccionario Maestro con todos los temas de A1
+# Diccionario con los links que me pasaste
 DATOS_TEMAS = {
-    "1. Saludos y Despedidas": {"video": "https://www.youtube.com/watch?v=dD7dw9MN4H0", "pdf": "minilibro Saludos.pdf", "frases": ["Buenos días", "Mucho gusto", "Hasta luego"]},
-    "2. Los Números (0-100)": {"video": "URL_YOUTUBE", "pdf": "Minilibros Los números en español (0-100).pdf", "frases": ["Cincuenta", "Ochenta y dos", "Cien"]},
-    "3. Los Colores": {"video": "URL_YOUTUBE", "pdf": "Minilibro Los colores en español.pdf", "frases": ["Azul", "Rojo", "Amarillo"]},
-    "4. Días, Meses y Estaciones": {"video": "URL_YOUTUBE", "pdf": "Minilibro Los días, los meses y las estaciones.pdf", "frases": ["Lunes", "Octubre", "Primavera"]},
-    "5. La Hora": {"video": "URL_YOUTUBE", "pdf": "Minilibro La Hora en Español.pdf", "frases": ["Son las tres", "Es la una", "En punto"]},
-    "6. La Familia": {"video": "URL_YOUTUBE", "pdf": "minilibro La familia en español.pdf", "frases": ["Mi madre", "Mi hermano", "Mi abuela"]},
-    "7. Las Profesiones": {"video": "URL_YOUTUBE", "pdf": "Minilibro Las profesiones en español.pdf", "frases": ["Médico", "Profesor", "Abogado"]},
-    "8. Profesiones Técnicas": {"video": "URL_YOUTUBE", "pdf": "Minilibro Las profesiones técnicas en español.pdf", "frases": ["Ingeniero", "Técnico", "Mecánico"]},
-    "9. Nacionalidad y Países": {"video": "URL_YOUTUBE", "pdf": "Minilibros Los países y nacionalidades en español.pdf", "frases": ["España", "Soy mexicano", "Francia"]},
-    "10. Partes del Cuerpo": {"video": "URL_YOUTUBE", "pdf": "Minilibro Las partes del cuerpo en español.pdf", "frases": ["La cabeza", "El brazo", "La pierna"]},
-    "11. La Ropa y Vestimenta": {"video": "URL_YOUTUBE", "pdf": "Minilibro La ropa y la vestimenta en español.pdf", "frases": ["La camisa", "Los pantalones", "Zapatos"]},
-    "12. Comida y Bebidas": {"video": "URL_YOUTUBE", "pdf": "Minilibro Comidas y Bebidas en Español..pdf", "frases": ["Manzana", "Café", "Agua"]},
-    "13. La Casa": {"video": "URL_YOUTUBE", "pdf": "Minilibro La casa y sus partes en español.pdf", "frases": ["La cocina", "El baño", "Sala"]},
-    "14. Objetos Cotidianos": {"video": "URL_YOUTUBE", "pdf": "Minilibros Los objetos cotidianos en español.pdf", "frases": ["La llave", "El libro", "Mesa"]},
-    "15. Medios de Transporte": {"video": "URL_YOUTUBE", "pdf": "Minilibros Los medios de transporte en español.pdf", "frases": ["El coche", "Avión", "Bicicleta"]},
-    "16. Los Lugares": {"video": "URL_YOUTUBE", "pdf": "Minilibro Los lugares en español.pdf", "frases": ["El parque", "La escuela", "Cine"]},
-    "17. Animales Domésticos": {"video": "URL_YOUTUBE", "pdf": "Minilibro Los animales domésticos en español.pdf", "frases": ["El perro", "El gato", "Pájaro"]},
-    "18. Animales Salvajes": {"video": "URL_YOUTUBE", "pdf": "Minilibro Los animales salvajes en español.pdf", "frases": ["El león", "Elefante", "Tigre"]}
+    "1. Saludos y Despedidas": {
+        "video": "https://www.youtube.com/watch?v=hll10VBLFoQ",
+        "cuento": "https://www.youtube.com/watch?v=84FNM-Ni-6U",
+        "pdf": "minilibro Saludos.pdf",
+        "frases": ["Buenos días", "¿Cómo estás?", "Mucho gusto", "Hasta mañana"]
+    },
+    "2. Los Números (0-100)": {
+        "video": "https://www.youtube.com/watch?v=nxMBJQAE2ZU",
+        "pdf": "Minilibros Los números en español (0-100).pdf",
+        "frases": ["Diez", "Cincuenta", "Cien"]
+    },
+    "3. Los Colores": {
+        "video": "https://www.youtube.com/watch?v=UF5HWnCrAU8",
+        "pdf": "Minilibro Los colores en español.pdf",
+        "frases": ["Rojo", "Azul", "Verde"]
+    },
+    "4. Días, Meses y Estaciones": {
+        "video": "URL_YOUTUBE",
+        "pdf": "Minilibro Los días, los meses y las estaciones.pdf",
+        "frases": ["Lunes", "Enero", "Verano"]
+    },
+    "5. La Hora": {
+        "video": "https://youtu.be/CbqNMMNza9w",
+        "pdf": "Minilibro La Hora en Español.pdf",
+        "frases": ["Es la una", "Son las dos", "En punto"]
+    },
+    "6. La Familia": {
+        "video": "URL_YOUTUBE",
+        "pdf": "minilibro La familia en español.pdf",
+        "frases": ["Mi madre", "Mi padre"]
+    },
+    "7. Las Profesiones": {
+        "video": "https://www.youtube.com/watch?v=szed1no5viA",
+        "pdf": "Minilibro Las profesiones en español.pdf",
+        "frases": ["Doctor", "Maestra", "Ingeniero"]
+    },
+    "8. Profesiones Técnicas": {
+        "video": "URL_YOUTUBE",
+        "pdf": "Minilibro Las profesiones técnicas en español.pdf",
+        "frases": ["Técnico", "Mecánico"]
+    },
+    "9. Nacionalidad y Países": {
+        "video": "URL_YOUTUBE",
+        "pdf": "Minilibros Los países y nacionalidades en español.pdf",
+        "frases": ["España", "México"]
+    },
+    "10. Partes del Cuerpo": {
+        "video": "https://www.youtube.com/watch?v=OfX0hCFCdeA",
+        "pdf": "Minilibro Las partes del cuerpo en español.pdf",
+        "frases": ["La cabeza", "La mano", "El pie"]
+    },
+    "11. La Ropa y Vestimenta": {
+        "video": "https://www.youtube.com/watch?v=nOisiL-Pyak",
+        "pdf": "Minilibro La ropa y la vestimenta en español.pdf",
+        "frases": ["La camisa", "Los zapatos"]
+    },
+    "12. Comida y Bebidas": {
+        "video": "https://www.youtube.com/watch?v=9iPhcCg64j8",
+        "cuento": "https://www.youtube.com/watch?v=LgpwYTK9RTc",
+        "pdf": "Minilibro Comidas y Bebidas en Español..pdf",
+        "frases": ["Manzana", "Agua", "Comida"]
+    },
+    "13. La Casa": {
+        "video": "https://youtu.be/2Wz5yyw80gs",
+        "pdf": "Minilibro La casa y sus partes en español.pdf",
+        "frases": ["La sala", "La cocina", "Mi cuarto"]
+    },
+    "14. Objetos Cotidianos": {
+        "video": "URL_YOUTUBE",
+        "pdf": "Minilibros Los objetos cotidianos en español.pdf",
+        "frases": ["La mesa", "La silla"]
+    },
+    "15. Medios de Transporte": {
+        "video": "URL_YOUTUBE",
+        "pdf": "Minilibros Los medios de transporte en español.pdf",
+        "frases": ["El carro", "El avión"]
+    },
+    "16. Los Lugares": {
+        "video": "https://www.youtube.com/watch?v=DziT1MJLmk4",
+        "cuento": "https://www.youtube.com/watch?v=Ss_2il1-Sm8",
+        "pdf": "Minilibro Los lugares en español.pdf",
+        "frases": ["El cine", "La escuela", "El hospital"]
+    },
+    "17. Animales Domésticos": {
+        "video": "https://www.youtube.com/watch?v=G2n_FA_vhPU",
+        "pdf": "Minilibro Los animales domésticos en español.pdf",
+        "frases": ["El perro", "El gato", "El conejo"]
+    },
+    "18. Animales Salvajes": {
+        "video": "URL_YOUTUBE",
+        "pdf": "Minilibro Los animales salvajes en español.pdf",
+        "frases": ["El león", "El tigre"]
+    }
 }
 
 # --- 2. CONTROL DE ACCESO ---
@@ -32,19 +107,19 @@ CONTRASEÑA = "pao_premium"
 if "auth" not in st.session_state: st.session_state.auth = False
 
 if not st.session_state.auth:
-    st.title("🔐 Academia Pao- Spanish- Teacher")
+    st.title("🎓 Academia Pao- Spanish- Teacher")
     clave = st.text_input("Clave de alumno:", type="password")
     if st.button("Ingresar"):
         if clave == CONTRASEÑA:
             st.session_state.auth = True
             st.rerun()
-        else: st.error("Clave incorrecta")
+        else: st.error("❌ Clave incorrecta")
     st.stop()
 
 # --- 3. BARRA LATERAL ---
 with st.sidebar:
-    st.title("Pao- Spanish- Teacher")
-    menu = st.radio("Menú:", ["Inicio", "Lecciones A1", "Contacto"])
+    st.title("Pao- Spanish")
+    menu = st.radio("Secciones:", ["Inicio", "Lecciones A1", "Contacto"])
     if st.button("Cerrar Sesión"):
         st.session_state.auth = False
         st.rerun()
@@ -52,26 +127,31 @@ with st.sidebar:
 # --- 4. SECCIONES ---
 if menu == "Inicio":
     st.title("¡Bienvenida a tu Academia! ✨")
-    st.info("Selecciona 'Lecciones A1' para comenzar a estudiar los 18 temas.")
+    st.write("Selecciona un tema en 'Lecciones A1' para comenzar.")
 
 elif menu == "Lecciones A1":
     st.title("📚 Temario Nivel A1")
-    tema_elegido = st.selectbox("Selecciona el tema de hoy:", ["Selecciona..."] + list(DATOS_TEMAS.keys()))
+    tema_elegido = st.selectbox("Elige un tema:", ["Selecciona..."] + list(DATOS_TEMAS.keys()))
 
     if tema_elegido != "Selecciona...":
         datos = DATOS_TEMAS[tema_elegido]
         st.header(f"📍 {tema_elegido}")
         
-        t_vid, t_dict, t_quiz, t_print = st.tabs(["📺 Video Clase", "🎧 Dictado", "✍️ Quiz / Cuento", "📄 Minilibro"])
+        t_vid, t_dict, t_quiz, t_print = st.tabs(["📺 Video Clase", "🎧 Dictado", "✍️ Quiz", "📄 Minilibro para Imprimir"])
 
         with t_vid:
+            st.subheader("📺 Material Audiovisual")
             if datos["video"] != "URL_YOUTUBE":
+                st.info("🎥 Video 1")
                 st.video(datos["video"])
-            else:
-                st.info("🎥 Video próximamente...")
+            
+            if "cuento" in datos:
+                st.markdown("---")
+                st.info("🎥 Video 2")
+                st.video(datos["cuento"])
 
         with t_dict:
-            st.subheader("🎧 Desafío de Dictado")
+            st.subheader("🎧 Practica tu oído")
             if 'idx' not in st.session_state: st.session_state.idx = 0
             frases = datos["frases"]
             
@@ -81,31 +161,30 @@ elif menu == "Lecciones A1":
                 if st.button("🔊 Escuchar"):
                     gTTS(text=actual, lang='es').save("d.mp3")
                     st.audio("d.mp3")
-                resp = st.text_input("Escribe:", key=f"in_{tema_elegido}_{st.session_state.idx}")
+                resp = st.text_input("Escribe lo que escuchas:", key=f"d_{tema_elegido}_{st.session_state.idx}")
                 if st.button("Comprobar"):
                     if resp.lower().strip() == actual.lower().strip():
-                        st.success("¡Correcto!")
+                        st.success("¡Excelente!")
                         st.session_state.idx += 1
                         st.rerun()
             else:
                 st.balloons()
-                st.success("¡Completado!")
+                st.success("🎊 ¡Completado!")
                 if st.button("Reiniciar"): st.session_state.idx = 0; st.rerun()
 
         with t_quiz:
-            st.subheader("Pregunta de Repaso")
-            st.write("¿Listo para el cuento y el quiz?")
-            st.info("Aquí puedes añadir una pregunta rápida sobre el tema.")
+            st.subheader("✍️ Quiz")
+            st.write("Próximamente ejercicios interactivos.")
 
         with t_print:
-            st.subheader("📄 Material para Imprimir")
+            st.subheader("📄 Material de Estudio")
             nombre_pdf = datos["pdf"]
             try:
                 with open(nombre_pdf, "rb") as f:
-                    st.download_button(f"📥 Descargar {nombre_pdf}", f, file_name=nombre_pdf)
+                    st.download_button(f"📥 Descargar Minilibro", f, file_name=nombre_pdf)
             except FileNotFoundError:
-                st.warning(f"⚠️ Por favor, sube el archivo '{nombre_pdf}' a GitHub.")
+                st.warning(f"⚠️ Sube '{nombre_pdf}' a GitHub.")
 
 elif menu == "Contacto":
     st.title("📩 Contacto")
-    st.write("Email: pao.mzh16@gmail.com")
+    st.write("pao.mzh16@gmail.com")
