@@ -5,7 +5,7 @@ import os
 # --- 1. CONFIGURACIÓN Y DATOS MAESTROS ---
 st.set_page_config(page_title="Pao- Spanish- Teacher", page_icon="🎓", layout="wide")
 
-# Diccionario actualizado con tus nuevos links y títulos especiales
+# Diccionario actualizado con tus nuevos enlaces
 DATOS_TEMAS = {
     "1. Saludos y Despedidas": {
         "video": "https://www.youtube.com/watch?v=hll10VBLFoQ",
@@ -17,9 +17,8 @@ DATOS_TEMAS = {
     "2. Los Números (0-100)": {
         "video": "https://www.youtube.com/watch?v=nxMBJQAE2ZU",
         "video2": "https://www.youtube.com/watch?v=u_BAr1fjILU",
-        "titulo_v2": "🔢 Los Números Ordinales",
         "pdf": "Minilibros Los números en español (0-100).pdf",
-        "frases": ["Diez", "Primero", "Cien"]
+        "frases": ["Diez", "Cincuenta", "Cien"]
     },
     "3. Los Colores": {
         "video": "https://www.youtube.com/watch?v=UF5HWnCrAU8",
@@ -35,14 +34,13 @@ DATOS_TEMAS = {
     "5. La Hora": {
         "video": "https://youtu.be/CbqNMMNza9w",
         "video2": "https://www.youtube.com/watch?v=xmeIIuBwxu4",
-        "titulo_v2": "⏰ La Rutina Diaria",
         "pdf": "Minilibro La Hora en Español.pdf",
-        "frases": ["Es la una", "Desayuno", "En punto"]
+        "frases": ["Es la una", "Son las dos", "En punto"]
     },
     "6. La Familia": {
         "video": "https://www.youtube.com/watch?v=4C9JiqgMt8o",
         "pdf": "minilibro La familia en español.pdf",
-        "frases": ["Mi madre", "Mi padre", "Mi abuela"]
+        "frases": ["Mi madre", "Mi padre", "Mi abuelo"]
     },
     "7. Las Profesiones": {
         "video": "https://www.youtube.com/watch?v=szed1no5viA",
@@ -67,7 +65,7 @@ DATOS_TEMAS = {
     "11. La Ropa y Vestimenta": {
         "video": "https://www.youtube.com/watch?v=nOisiL-Pyak",
         "pdf": "Minilibro La ropa y la vestimenta en español.pdf",
-        "frases": ["La camisa", "Los pantalones", "Zapatos"]
+        "frases": ["La camisa", "Los zapatos", "El vestido"]
     },
     "12. Comida y Bebidas": {
         "video": "https://www.youtube.com/watch?v=9iPhcCg64j8",
@@ -133,7 +131,7 @@ with st.sidebar:
 # --- 4. SECCIONES ---
 if menu == "Inicio":
     st.title("¡Bienvenida a tu Academia! ✨")
-    st.write("Explora las lecciones diseñadas para tu aprendizaje.")
+    st.write("Tu plataforma está lista con los videos y minilibros actualizados.")
 
 elif menu == "Lecciones A1":
     st.title("📚 Temario Nivel A1")
@@ -148,22 +146,21 @@ elif menu == "Lecciones A1":
         with t_vid:
             st.subheader("📺 Material Audiovisual")
             
-            # Video 1
+            # Mostrar Video 1
             if datos["video"] != "URL_YOUTUBE":
-                st.info("🎥 Clase Principal")
+                st.info("🎥 Video Parte 1")
                 st.video(datos["video"])
             
-            # Video 2 (Con títulos personalizados para La Hora y Números)
+            # Mostrar Video 2 si existe
             if "video2" in datos:
                 st.markdown("---")
-                titulo2 = datos.get("titulo_v2", "🎥 Video Complementario")
-                st.info(titulo2)
+                st.info("🎥 Video Parte 2")
                 st.video(datos["video2"])
-            
-            # Video 3 (Para Saludos)
+
+            # Mostrar Video 3 si existe (especial para Saludos)
             if "video3" in datos:
                 st.markdown("---")
-                st.info("🎥 Video Adicional")
+                st.info("🎥 Video Parte 3")
                 st.video(datos["video3"])
 
         with t_dict:
@@ -190,14 +187,14 @@ elif menu == "Lecciones A1":
 
         with t_quiz:
             st.subheader("✍️ Quiz")
-            st.write("Próximamente ejercicios interactivos.")
+            st.write("Aquí podrás añadir tus preguntas interactivas.")
 
         with t_print:
             st.subheader("📄 Material de Estudio")
             nombre_pdf = datos["pdf"]
             try:
                 with open(nombre_pdf, "rb") as f:
-                    st.download_button(f"📥 Descargar Minilibro", f, file_name=nombre_pdf, key=f"btn_{tema_elegido}")
+                    st.download_button(f"📥 Descargar Minilibro", f, file_name=nombre_pdf)
             except FileNotFoundError:
                 st.warning(f"⚠️ Sube '{nombre_pdf}' a GitHub.")
 
