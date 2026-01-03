@@ -5,20 +5,20 @@ import os
 # --- 1. CONFIGURACIÓN Y DATOS MAESTROS ---
 st.set_page_config(page_title="Pao- Spanish- Teacher", page_icon="🎓", layout="wide")
 
-# Diccionario actualizado con tus nuevos enlaces
+# Diccionario actualizado con todos tus nuevos videos
 DATOS_TEMAS = {
     "1. Saludos y Despedidas": {
         "video": "https://www.youtube.com/watch?v=hll10VBLFoQ",
         "video2": "https://www.youtube.com/watch?v=84FNM-Ni-6U",
-        "video3": "https://www.youtube.com/watch?v=4txmiiR10wM",
+        "video3": "https://www.youtube.com/watch?v=4txmiiR10wM", # Nuevo video 3
         "pdf": "minilibro Saludos.pdf",
         "frases": ["Buenos días", "¿Cómo estás?", "Mucho gusto", "Hasta mañana"]
     },
     "2. Los Números (0-100)": {
         "video": "https://www.youtube.com/watch?v=nxMBJQAE2ZU",
-        "video2": "https://www.youtube.com/watch?v=u_BAr1fjILU",
+        "video2": "https://www.youtube.com/watch?v=u_BAr1fjILU", # Nuevo video 2
         "pdf": "Minilibros Los números en español (0-100).pdf",
-        "frases": ["Diez", "Cincuenta", "Cien"]
+        "frases": ["Diez", "Cincuenta", "Cien", "Setenta y cinco"]
     },
     "3. Los Colores": {
         "video": "https://www.youtube.com/watch?v=UF5HWnCrAU8",
@@ -26,21 +26,21 @@ DATOS_TEMAS = {
         "frases": ["Rojo", "Azul", "Verde"]
     },
     "4. Días, Meses y Estaciones": {
-        "video": "https://www.youtube.com/watch?v=T9fvfbMQn2I",
-        "video2": "https://www.youtube.com/watch?v=mhI73gkjtwk",
+        "video": "https://www.youtube.com/watch?v=T9fvfbMQn2I", # Nuevo video 1
+        "video2": "https://www.youtube.com/watch?v=mhI73gkjtwk", # Nuevo video 2
         "pdf": "Minilibro Los días, los meses y las estaciones.pdf",
         "frases": ["Lunes", "Enero", "Verano"]
     },
     "5. La Hora": {
         "video": "https://youtu.be/CbqNMMNza9w",
-        "video2": "https://www.youtube.com/watch?v=xmeIIuBwxu4",
+        "video2": "https://www.youtube.com/watch?v=xmeIIuBwxu4", # Nuevo video 2
         "pdf": "Minilibro La Hora en Español.pdf",
         "frases": ["Es la una", "Son las dos", "En punto"]
     },
     "6. La Familia": {
-        "video": "https://www.youtube.com/watch?v=4C9JiqgMt8o",
+        "video": "https://www.youtube.com/watch?v=4C9JiqgMt8o", # Nuevo video
         "pdf": "minilibro La familia en español.pdf",
-        "frases": ["Mi madre", "Mi padre", "Mi abuelo"]
+        "frases": ["Mi madre", "Mi padre", "Mi abuela"]
     },
     "7. Las Profesiones": {
         "video": "https://www.youtube.com/watch?v=szed1no5viA",
@@ -48,12 +48,12 @@ DATOS_TEMAS = {
         "frases": ["Doctor", "Maestra", "Ingeniero"]
     },
     "8. Profesiones Técnicas": {
-        "video": "https://www.youtube.com/watch?v=jnyMcesUtsI",
+        "video": "https://www.youtube.com/watch?v=jnyMcesUtsI", # Nuevo video
         "pdf": "Minilibro Las profesiones técnicas en español.pdf",
-        "frases": ["Técnico", "Mecánico", "Electricista"]
+        "frases": ["Técnico", "Mecánico", "Soldador"]
     },
     "9. Nacionalidad y Países": {
-        "video": "https://www.youtube.com/watch?v=T2HVf4YqHZY",
+        "video": "https://www.youtube.com/watch?v=T2HVf4YqHZY", # Nuevo video
         "pdf": "Minilibros Los países y nacionalidades en español.pdf",
         "frases": ["España", "México", "Soy colombiano"]
     },
@@ -65,7 +65,7 @@ DATOS_TEMAS = {
     "11. La Ropa y Vestimenta": {
         "video": "https://www.youtube.com/watch?v=nOisiL-Pyak",
         "pdf": "Minilibro La ropa y la vestimenta en español.pdf",
-        "frases": ["La camisa", "Los zapatos", "El vestido"]
+        "frases": ["La camisa", "Los zapatos"]
     },
     "12. Comida y Bebidas": {
         "video": "https://www.youtube.com/watch?v=9iPhcCg64j8",
@@ -131,7 +131,7 @@ with st.sidebar:
 # --- 4. SECCIONES ---
 if menu == "Inicio":
     st.title("¡Bienvenida a tu Academia! ✨")
-    st.write("Tu plataforma está lista con los videos y minilibros actualizados.")
+    st.write("Selecciona un tema en 'Lecciones A1' para comenzar.")
 
 elif menu == "Lecciones A1":
     st.title("📚 Temario Nivel A1")
@@ -146,21 +146,21 @@ elif menu == "Lecciones A1":
         with t_vid:
             st.subheader("📺 Material Audiovisual")
             
-            # Mostrar Video 1
+            # Video 1
             if datos["video"] != "URL_YOUTUBE":
-                st.info("🎥 Video Parte 1")
+                st.info("🎥 Video 1")
                 st.video(datos["video"])
             
-            # Mostrar Video 2 si existe
+            # Video 2 (si existe)
             if "video2" in datos:
                 st.markdown("---")
-                st.info("🎥 Video Parte 2")
+                st.info("🎥 Video 2")
                 st.video(datos["video2"])
 
-            # Mostrar Video 3 si existe (especial para Saludos)
+            # Video 3 (si existe - ej. Saludos)
             if "video3" in datos:
                 st.markdown("---")
-                st.info("🎥 Video Parte 3")
+                st.info("🎥 Video 3")
                 st.video(datos["video3"])
 
         with t_dict:
@@ -187,14 +187,14 @@ elif menu == "Lecciones A1":
 
         with t_quiz:
             st.subheader("✍️ Quiz")
-            st.write("Aquí podrás añadir tus preguntas interactivas.")
+            st.write("Próximamente ejercicios interactivos.")
 
         with t_print:
             st.subheader("📄 Material de Estudio")
             nombre_pdf = datos["pdf"]
             try:
                 with open(nombre_pdf, "rb") as f:
-                    st.download_button(f"📥 Descargar Minilibro", f, file_name=nombre_pdf)
+                    st.download_button(f"📥 Descargar Minilibro", f, file_name=nombre_pdf, key=f"btn_{tema_elegido}")
             except FileNotFoundError:
                 st.warning(f"⚠️ Sube '{nombre_pdf}' a GitHub.")
 
