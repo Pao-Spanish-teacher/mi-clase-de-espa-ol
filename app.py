@@ -56,56 +56,24 @@ if menu == "Inicio":
 
 elif menu == "Gramática Española":
     st.title("📖 Gramática Española")
-    st.markdown("""
-    Bienvenido a la sección de **cimientos del español**. Aquí encontrarás las reglas esenciales 
-    que te permitirán construir frases correctamente desde el primer día. 
-    ---
-    """)
+    st.markdown("Bienvenido a la sección de **cimientos del español**.")
     
     col1, col2 = st.columns(2)
-    
     with col1:
-        st.subheader("1. El Alfabeto")
-        st.video("https://www.youtube.com/watch?v=NMgN5gsvhWk") 
-
-        st.subheader("3. El Género Gramatical")
-        st.video("https://www.youtube.com/watch?v=FSqRurjGIqw")
-
-        st.subheader("5. Número Gramatical")
-        st.video("https://www.youtube.com/watch?v=VU5ylA-WjI8")
-
-        st.subheader("7. Artículos Definidos e Indefinidos")
-        st.video("https://www.youtube.com/watch?v=rLL0NWpz6IE")
-
-        st.subheader("9. Pronombres Personales")
-        st.video("https://www.youtube.com/watch?v=LorQtNAKeb4")
-
-        st.subheader("11. Verbos de Movimiento")
-        st.video("https://www.youtube.com/watch?v=2o4sO1IS3oM")
-
-        st.subheader("13. Tiempos Verbales")
-        st.video("https://www.youtube.com/watch?v=KA2RryvqfIM")
-
+        st.subheader("1. El Alfabeto"); st.video("https://www.youtube.com/watch?v=NMgN5gsvhWk") 
+        st.subheader("3. El Género Gramatical"); st.video("https://www.youtube.com/watch?v=FSqRurjGIqw")
+        st.subheader("5. Número Gramatical"); st.video("https://www.youtube.com/watch?v=VU5ylA-WjI8")
+        st.subheader("7. Artículos Definidos e Indefinidos"); st.video("https://www.youtube.com/watch?v=rLL0NWpz6IE")
+        st.subheader("9. Pronombres Personales"); st.video("https://www.youtube.com/watch?v=LorQtNAKeb4")
+        st.subheader("11. Verbos de Movimiento"); st.video("https://www.youtube.com/watch?v=2o4sO1IS3oM")
+        st.subheader("13. Tiempos Verbales"); st.video("https://www.youtube.com/watch?v=KA2RryvqfIM")
     with col2:
-        st.subheader("2. Preguntas Comunes")
-        st.video("https://www.youtube.com/watch?v=gLnuqh-CUNQ")
-
-        st.subheader("4. Singular y Plural")
-        st.video("https://www.youtube.com/watch?v=h9pCzNZ1jTI")
-
-        st.subheader("6. Palabras Opuestas")
-        st.video("https://youtu.be/fADLwhd43ac")
-
-        st.subheader("8. Palabras Opuestas 1")
-        st.video("https://www.youtube.com/watch?v=icJML1BE9qA")
-
-        st.subheader("10. Preguntas y Frases al Viajar")
-        st.video("https://www.youtube.com/watch?v=UI1Bmk3_q08")
-
-        st.subheader("12. Formar Oraciones en Español")
-        st.video("https://www.youtube.com/watch?v=JKt16i6BwkM")
-
-    st.success("🎯 ¡Sigue este orden para dominar las reglas del español!")
+        st.subheader("2. Preguntas Comunes"); st.video("https://www.youtube.com/watch?v=gLnuqh-CUNQ")
+        st.subheader("4. Singular y Plural"); st.video("https://www.youtube.com/watch?v=h9pCzNZ1jTI")
+        st.subheader("6. Palabras Opuestas"); st.video("https://youtu.be/fADLwhd43ac")
+        st.subheader("8. Palabras Opuestas 1"); st.video("https://www.youtube.com/watch?v=icJML1BE9qA")
+        st.subheader("10. Preguntas y Frases al Viajar"); st.video("https://www.youtube.com/watch?v=UI1Bmk3_q08")
+        st.subheader("12. Formar Oraciones en Español"); st.video("https://www.youtube.com/watch?v=JKt16i6BwkM")
 
 elif menu == "Lecciones A1":
     st.title("📚 Temario Nivel A1")
@@ -114,17 +82,13 @@ elif menu == "Lecciones A1":
     if tema_elegido != "Selecciona...":
         datos = DATOS_TEMAS[tema_elegido]
         st.header(f"📍 {tema_elegido}")
-        t_vid, t_dict, t_quiz, t_print = st.tabs(["📺 Video Clase", "🎧 Dictado", "✍️ Quiz", "📄 Minilibro para Imprimir"])
+        # AQUÍ CAMBIAMOS EL NOMBRE DE LA PESTAÑA
+        t_vid, t_dict, t_story, t_print = st.tabs(["📺 Video Clase", "🎧 Dictado", "📖 Cuento y Práctica", "📄 Minilibro"])
 
         with t_vid:
-            st.subheader("📺 Material Audiovisual")
+            st.subheader("📺 Clase Explicativa")
             if datos["video"] != "URL_YOUTUBE": st.video(datos["video"])
-            if "video2" in datos:
-                st.markdown("---")
-                st.video(datos["video2"])
-            if "video3" in datos:
-                st.markdown("---")
-                st.video(datos["video3"])
+            if "video2" in datos: st.markdown("---"); st.video(datos["video2"])
 
         with t_dict:
             st.subheader("🎧 Practica tu oído")
@@ -132,31 +96,43 @@ elif menu == "Lecciones A1":
             frases = datos["frases"]
             if st.session_state.idx < len(frases):
                 actual = frases[st.session_state.idx]
-                st.write(f"Frase {st.session_state.idx + 1} de {len(frases)}")
-                if st.button("🔊 Escuchar"):
-                    gTTS(text=actual, lang='es').save("d.mp3")
-                    st.audio("d.mp3")
+                if st.button("🔊 Escuchar"): gTTS(text=actual, lang='es').save("d.mp3"); st.audio("d.mp3")
                 resp = st.text_input("Escribe lo que escuchas:", key=f"d_{tema_elegido}_{st.session_state.idx}")
                 if st.button("Comprobar"):
                     if resp.lower().strip() == actual.lower().strip():
-                        st.success("¡Excelente!")
-                        st.session_state.idx += 1
-                        st.rerun()
+                        st.success("¡Excelente!"); st.session_state.idx += 1; st.rerun()
             else:
-                st.balloons()
-                st.success("🎊 ¡Completado!")
-                if st.button("Reiniciar práctica"):
-                    st.session_state.idx = 0
-                    st.rerun()
+                st.success("🎊 ¡Completado!"); 
+                if st.button("Reiniciar"): st.session_state.idx = 0; st.rerun()
+
+        # NUEVA SECCIÓN DE CUENTO Y EJERCICIOS
+        with t_story:
+            st.subheader("🎬 Mira el cuento y resuelve")
+            # Si el tema tiene un video3 (usualmente el cuento), lo mostramos aquí
+            if "video3" in datos:
+                st.video(datos["video3"])
+            else:
+                st.info("El video del cuento estará disponible pronto.")
+            
+            st.markdown("---")
+            st.write("### ✍️ Ejercicios de Comprensión")
+            
+            # Ejemplo de cómo se vería una pregunta (puedes personalizar por tema)
+            q1 = st.radio("1. Según el video, ¿cómo se siente el personaje?", ["Feliz", "Triste", "Cansado"], key=f"q1_{tema_elegido}")
+            
+            st.write("### ✏️ Completa la oración")
+            c1 = st.text_input("El personaje dice: 'Buenos _______'", key=f"c1_{tema_elegido}")
+            
+            if st.button("Verificar Respuestas"):
+                st.write("¡Sigue practicando! Revisa tu minilibro para confirmar las respuestas.")
 
         with t_print:
-            st.subheader("📄 Material de Estudio")
-            nombre_pdf = datos["pdf"]
+            st.subheader("📄 Material para Imprimir")
             try:
-                with open(nombre_pdf, "rb") as f:
-                    st.download_button(f"📥 Descargar Minilibro", f, file_name=nombre_pdf, key=f"btn_{tema_elegido}")
+                with open(datos["pdf"], "rb") as f:
+                    st.download_button(f"📥 Descargar Minilibro", f, file_name=datos["pdf"], key=f"btn_{tema_elegido}")
             except FileNotFoundError:
-                st.warning(f"⚠️ Sube '{nombre_pdf}' a GitHub.")
+                st.warning(f"⚠️ Sube '{datos['pdf']}' a GitHub.")
 
 elif menu == "Contacto":
     st.title("📩 Contacto")
