@@ -124,7 +124,10 @@ elif menu == "Lecciones A1":
 
         with t_print:
             st.subheader("📄 Material para Imprimir")
-            st.markdown("Descarga el material físico para reforzar lo aprendido.")
+            st.markdown("""
+            En esta sección puedes descargar todo el material físico para reforzar lo aprendido en clase. 
+            Recomendamos imprimir estos archivos para practicar tu escritura y tener una guía visual siempre a mano.
+            """)
             col_pdf, col_fichas = st.columns(2)
             with col_pdf:
                 st.write("#### 📘 Minilibro")
