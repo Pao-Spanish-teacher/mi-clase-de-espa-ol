@@ -56,8 +56,6 @@ if menu == "Inicio":
 
 elif menu == "Gramática Española":
     st.title("📖 Gramática Española")
-    st.markdown("Bienvenido a la sección de **cimientos del español**.")
-    
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("1. El Alfabeto"); st.video("https://www.youtube.com/watch?v=NMgN5gsvhWk") 
@@ -82,7 +80,6 @@ elif menu == "Lecciones A1":
     if tema_elegido != "Selecciona...":
         datos = DATOS_TEMAS[tema_elegido]
         st.header(f"📍 {tema_elegido}")
-        # AQUÍ CAMBIAMOS EL NOMBRE DE LA PESTAÑA
         t_vid, t_dict, t_story, t_print = st.tabs(["📺 Video Clase", "🎧 Dictado", "📖 Cuento y Práctica", "📄 Minilibro"])
 
         with t_vid:
@@ -96,6 +93,7 @@ elif menu == "Lecciones A1":
             frases = datos["frases"]
             if st.session_state.idx < len(frases):
                 actual = frases[st.session_state.idx]
+                st.write(f"Frase {st.session_state.idx + 1} de {len(frases)}")
                 if st.button("🔊 Escuchar"): gTTS(text=actual, lang='es').save("d.mp3"); st.audio("d.mp3")
                 resp = st.text_input("Escribe lo que escuchas:", key=f"d_{tema_elegido}_{st.session_state.idx}")
                 if st.button("Comprobar"):
@@ -105,34 +103,40 @@ elif menu == "Lecciones A1":
                 st.success("🎊 ¡Completado!"); 
                 if st.button("Reiniciar"): st.session_state.idx = 0; st.rerun()
 
-        # NUEVA SECCIÓN DE CUENTO Y EJERCICIOS
+        # SECCIÓN DE CUENTO CON MENSAJE DE ERROR CORREGIDO
         with t_story:
             st.subheader("🎬 Mira el cuento y resuelve")
-            # Si el tema tiene un video3 (usualmente el cuento), lo mostramos aquí
             if "video3" in datos:
                 st.video(datos["video3"])
+            elif "video2" in datos and tema_elegido in ["12. Comida y Bebidas", "16. Los Lugares"]:
+                # Para temas donde el cuento es el video 2
+                st.video(datos["video2"])
             else:
                 st.info("El video del cuento estará disponible pronto.")
             
             st.markdown("---")
             st.write("### ✍️ Ejercicios de Comprensión")
             
-            # Ejemplo de cómo se vería una pregunta (puedes personalizar por tema)
-            q1 = st.radio("1. Según el video, ¿cómo se siente el personaje?", ["Feliz", "Triste", "Cansado"], key=f"q1_{tema_elegido}")
+            q1 = st.radio("1. Según el video, ¿quién es el personaje principal?", ["Un niño", "Un animal", "Una maestra"], key=f"q1_{tema_elegido}")
             
             st.write("### ✏️ Completa la oración")
-            c1 = st.text_input("El personaje dice: 'Buenos _______'", key=f"c1_{tema_elegido}")
+            c1 = st.text_input("Escribe la palabra que falta según el video:", key=f"c1_{tema_elegido}", placeholder="Ej: Hola")
             
             if st.button("Verificar Respuestas"):
-                st.write("¡Sigue practicando! Revisa tu minilibro para confirmar las respuestas.")
+                if c1.strip() == "":
+                    # MENSAJE ACTUALIZADO
+                    st.warning("⚠️ ¡Vuelve a ver el video para encontrar la respuesta correcta!")
+                else:
+                    st.success("✅ ¡Buen intento! Sigue practicando con más videos.")
 
         with t_print:
             st.subheader("📄 Material para Imprimir")
+            nombre_pdf = datos["pdf"]
             try:
-                with open(datos["pdf"], "rb") as f:
-                    st.download_button(f"📥 Descargar Minilibro", f, file_name=datos["pdf"], key=f"btn_{tema_elegido}")
+                with open(nombre_pdf, "rb") as f:
+                    st.download_button(f"📥 Descargar Minilibro", f, file_name=nombre_pdf, key=f"btn_{tema_elegido}")
             except FileNotFoundError:
-                st.warning(f"⚠️ Sube '{datos['pdf']}' a GitHub.")
+                st.warning(f"⚠️ Sube '{nombre_pdf}' a GitHub.")
 
 elif menu == "Contacto":
     st.title("📩 Contacto")
