@@ -5,42 +5,59 @@ import os
 # --- 1. CONFIGURACIÓN ---
 st.set_page_config(page_title="Pao- Spanish- Teacher", page_icon="🎓", layout="wide")
 
-# --- 2. DATOS MAESTROS ---
+# --- 2. DICCIONARIO MAESTRO CON TODOS LOS TEMAS ---
 DATOS_TEMAS = {
     "1. Saludos y Despedidas": {
         "video": "https://www.youtube.com/watch?v=hll10VBLFoQ", 
         "video2": "https://www.youtube.com/watch?v=84FNM-Ni-6U", 
         "video3": "https://www.youtube.com/watch?v=4txmiiR10wM",
-        "cuento": "https://www.youtube.com/watch?v=yhH8rwpEHRo", # Enlace corregido para que se vea
+        "cuento": "https://www.youtube.com/watch?v=yhH8rwpEHRo",
         "pdf": "minilibro Saludos.pdf", 
         "frases": ["Buenos días", "¿Cómo estás?", "Mucho gusto", "Hasta mañana"],
         "quiz_cuento": {
             "seleccion": [
-                {"p": "1. ¿Cómo se llama la niña que está jugando en la arena al inicio del cuento?", "o": ["María", "Brisa", "Ana"], "r": "Brisa"},
-                {"p": "2. ¿Cuál es la primera palabra que usa Río para saludar a Brisa?", "o": ["Adiós", "Gracias", "Hola"], "r": "Hola"},
-                {"p": "3. ¿Qué edad mencionan tener ambos niños durante su conversación?", "o": ["5 años", "7 años", "10 años"], "r": "5 años"},
-                {"p": "4. ¿Qué frase de cortesía usan los niños después de presentarse y decir sus nombres?", "o": ["De nada", "Mucho gusto", "Perdón"], "r": "Mucho gusto"},
-                {"p": "5. ¿Qué palabra usan los niños para despedirse al final del video?", "o": ["Hola", "Adiós", "Por favor"], "r": "Adiós"},
-                {"p": "6. ¿Qué estaba construyendo Brisa cuando llegó Río?", "o": ["Una casa de madera", "Un castillo de arena", "Un túnel de piedra"], "r": "Un castillo de arena"},
-                {"p": "7. ¿En qué lugar se encuentran los niños para jugar?", "o": ["En la escuela", "En un parque", "En la playa"], "r": "En un parque"},
-                {"p": "8. Cuando alguien te saluda y te pregunta cómo estás, lo más educado es responder:", "o": ["¡Qué mal!", "Estoy bien, gracias", "No quiero hablar"], "r": "Estoy bien, gracias"},
-                {"p": "9. Si es de mañana y entras a un lugar con gente, debes decir:", "o": ["Buenas noches", "Buenos días", "Hasta luego"], "r": "Buenos días"},
-                {"p": "10. ¿Cómo se llama el niño que se acerca a hacer un nuevo amigo?", "o": ["Mar", "Río", "Lago"], "r": "Río"}
+                {"p": "1. ¿Cómo se llama la niña que está jugando en la arena?", "o": ["María", "Brisa", "Ana"], "r": "Brisa"},
+                {"p": "2. ¿Cuál es la primera palabra que usa Río para saludar?", "o": ["Adiós", "Gracias", "Hola"], "r": "Hola"},
+                {"p": "3. ¿Qué edad mencionan tener ambos niños?", "o": ["5 años", "7 años", "10 años"], "r": "5 años"},
+                {"p": "4. ¿Qué frase de cortesía usan después de presentarse?", "o": ["De nada", "Mucho gusto", "Perdón"], "r": "Mucho gusto"},
+                {"p": "5. ¿Qué palabra usan para despedirse?", "o": ["Hola", "Adiós", "Por favor"], "r": "Adiós"},
+                {"p": "6. ¿Qué estaba construyendo Brisa?", "o": ["Una casa", "Un castillo de arena", "Un túnel"], "r": "Un castillo de arena"},
+                {"p": "7. ¿En qué lugar se encuentran los niños?", "o": ["En la escuela", "En un parque", "En la playa"], "r": "En un parque"},
+                {"p": "8. Si alguien te pregunta cómo estás, respondes:", "o": ["¡Qué mal!", "Estoy bien, gracias", "No quiero hablar"], "r": "Estoy bien, gracias"},
+                {"p": "9. Si es de mañana, debes decir:", "o": ["Buenas noches", "Buenos días", "Hasta luego"], "r": "Buenos días"},
+                {"p": "10. ¿Cómo se llama el niño que se acerca?", "o": ["Mar", "Río", "Lago"], "r": "Río"}
             ],
             "completar": [
-                {"p": "11. Cuando Río quiere saber cómo se siente su nueva amiga, él pregunta: '¿Cómo __________?'", "r": "estás"},
-                {"p": "12. Para conocer el nombre de la niña, el niño pregunta: '¿Cómo te __________?'", "r": "llamas"},
-                {"p": "13. Río le cuenta a Brisa el lugar donde reside diciendo: 'Yo vivo en la __________'", "r": "ciudad"},
-                {"p": "14. Para pedir algo de forma educada, siempre debemos usar la frase: '__________ favor'", "r": "Por"},
-                {"p": "15. Si los niños se volvieran a ver al día siguiente, podrían despedirse diciendo: 'Hasta __________'", "r": "mañana"},
-                {"p": "16. Al recibir un cumplido o una ayuda, la palabra mágica que debemos decir es '__________'", "r": "Gracias"},
-                {"p": "17. Brisa y Río decidieron que a partir de ese momento serían muy buenos __________", "r": "amigos"},
-                {"p": "18. Si saludas a alguien por la tarde, la expresión correcta es 'Buenas __________'", "r": "tardes"},
-                {"p": "19. Cuando te presentan a alguien y te sientes feliz de conocerle, dices 'Encantado' o 'Mucho __________'", "r": "gusto"},
-                {"p": "20. El nombre de la niña es __________ y el nombre del niño es Río.", "r": "Brisa"}
+                {"p": "11. Cuando Río quiere saber cómo se siente su amiga, pregunta: '¿Cómo __________?'", "r": "estás"},
+                {"p": "12. Para conocer el nombre de la niña, pregunta: '¿Cómo te __________?'", "r": "llamas"},
+                {"p": "13. Río le cuenta a Brisa: 'Yo vivo en la __________'", "r": "ciudad"},
+                {"p": "14. Para pedir algo educadamente: '__________ favor'", "r": "Por"},
+                {"p": "15. Si se ven al día siguiente: 'Hasta __________'", "r": "mañana"},
+                {"p": "16. Palabra mágica: '__________'", "r": "Gracias"},
+                {"p": "17. Brisa y Río decidieron que serían buenos __________", "r": "amigos"},
+                {"p": "18. Si saludas por la tarde: 'Buenas __________'", "r": "tardes"},
+                {"p": "19. Cuando te sientes feliz de conocerle: 'Mucho __________'", "r": "gusto"},
+                {"p": "20. La niña es __________ y el niño es Río.", "r": "Brisa"}
             ]
         }
-    }
+    },
+    "2. Los Números (0-100)": {"video": "https://www.youtube.com/watch?v=nxMBJQAE2ZU", "video2": "https://www.youtube.com/watch?v=u_BAr1fjILU", "pdf": "Minilibros Los números.pdf", "frases": ["Diez", "Cincuenta", "Cien"]},
+    "3. Los Colores": {"video": "https://www.youtube.com/watch?v=UF5HWnCrAU8", "pdf": "Minilibro Colores.pdf", "frases": ["Rojo", "Azul", "Amarillo"]},
+    "4. Días, Meses y Estaciones": {"video": "https://www.youtube.com/watch?v=T9fvfbMQn2I", "video2": "https://www.youtube.com/watch?v=mhI73gkjtwk", "pdf": "Minilibro Tiempo.pdf", "frases": ["Lunes", "Enero", "Verano"]},
+    "5. La Hora": {"video": "https://youtu.be/CbqNMMNza9w", "video2": "https://www.youtube.com/watch?v=xmeIIuBwxu4", "pdf": "Minilibro Hora.pdf", "frases": ["Es la una", "Son las dos"]},
+    "6. La Familia": {"video": "https://www.youtube.com/watch?v=4C9JiqgMt8o", "pdf": "Minilibro Familia.pdf", "frases": ["Mi padre", "Mi abuela"]},
+    "7. Las Profesiones": {"video": "https://www.youtube.com/watch?v=szed1no5viA", "pdf": "Minilibro Profesiones.pdf", "frases": ["Doctor", "Maestra"]},
+    "8. Profesiones Técnicas": {"video": "https://www.youtube.com/watch?v=jnyMcesUtsI", "pdf": "Minilibro Tecnicos.pdf", "frases": ["Mecánico", "Electricista"]},
+    "9. Nacionalidad y Países": {"video": "https://www.youtube.com/watch?v=T2HVf4YqHZY", "pdf": "Minilibro Paises.pdf", "frases": ["México", "España", "Colombia"]},
+    "10. Partes del Cuerpo": {"video": "https://www.youtube.com/watch?v=OfX0hCFCdeA", "pdf": "Minilibro Cuerpo.pdf", "frases": ["Cabeza", "Brazos", "Piernas"]},
+    "11. La Ropa y Vestimenta": {"video": "https://www.youtube.com/watch?v=nOisiL-Pyak", "pdf": "Minilibro Ropa.pdf", "frases": ["Camisa", "Zapatos", "Pantalón"]},
+    "12. Comida y Bebidas": {"video": "https://www.youtube.com/watch?v=9iPhcCg64j8", "video2": "https://www.youtube.com/watch?v=LgpwYTK9RTc", "pdf": "Minilibro Comida.pdf", "frases": ["Agua", "Manzana", "Pan"]},
+    "13. La Casa": {"video": "https://youtu.be/2Wz5yyw80gs", "pdf": "Minilibro Casa.pdf", "frases": ["Cocina", "Habitación"]},
+    "14. Objetos Cotidianos": {"video": "URL_PROXIMO", "pdf": "Minilibro Objetos.pdf", "frases": ["Mesa", "Silla"]},
+    "15. Medios de Transporte": {"video": "URL_PROXIMO", "pdf": "Minilibro Transporte.pdf", "frases": ["Carro", "Avión"]},
+    "16. Los Lugares": {"video": "https://www.youtube.com/watch?v=DziT1MJLmk4", "video2": "https://www.youtube.com/watch?v=Ss_2il1-Sm8", "pdf": "Minilibro Lugares.pdf", "frases": ["Cine", "Parque"]},
+    "17. Animales Domésticos": {"video": "https://www.youtube.com/watch?v=G2n_FA_vhPU", "pdf": "Minilibro AnimalesD.pdf", "frases": ["Perro", "Gato"]},
+    "18. Animales Salvajes": {"video": "URL_PROXIMO", "pdf": "Minilibro AnimalesS.pdf", "frases": ["León", "Tigre"]}
 }
 
 # --- 3. CONTROL DE ACCESO ---
@@ -49,12 +66,12 @@ if "auth" not in st.session_state: st.session_state.auth = False
 
 if not st.session_state.auth:
     st.title("🎓 Academia Pao- Spanish- Teacher")
-    clave = st.text_input("Clave de alumno:", type="password")
-    if st.button("Ingresar"):
+    clave = st.text_input("Ingresa tu clave de alumno:", type="password")
+    if st.button("Entrar"):
         if clave == CONTRASEÑA:
             st.session_state.auth = True
             st.rerun()
-        else: st.error("❌ Clave incorrecta")
+        else: st.error("Clave incorrecta")
     st.stop()
 
 # --- 4. BARRA LATERAL ---
@@ -65,10 +82,10 @@ with st.sidebar:
         st.session_state.auth = False
         st.rerun()
 
-# --- 5. SECCIONES ---
+# --- 5. LÓGICA DE SECCIONES ---
 if menu == "Inicio":
     st.title("¡Bienvenida a tu Academia! ✨")
-    st.write("Explora las secciones en el menú lateral para comenzar tu aprendizaje.")
+    st.write("Explora las secciones para comenzar.")
 
 elif menu == "Gramática Española":
     st.title("📖 Gramática Española")
@@ -118,7 +135,6 @@ elif menu == "Lecciones A1":
                 if st.button("Comprobar"):
                     if resp.lower().strip() == actual.lower().strip():
                         st.success("¡Excelente!"); st.session_state.idx += 1; st.rerun()
-                    else: st.error("Inténtalo de nuevo")
             else:
                 st.success("🎊 ¡Completado!")
                 if st.button("Reiniciar"): st.session_state.idx = 0; st.rerun()
@@ -126,7 +142,7 @@ elif menu == "Lecciones A1":
         with t_story:
             st.subheader("🎬 Mira el cuento y resuelve")
             if "cuento" in datos:
-                st.video(datos["cuento"]) # Este enlace ya está en formato largo
+                st.video(datos["cuento"])
                 st.markdown("---")
                 if "quiz_cuento" in datos:
                     st.write("### ✍️ Parte I: Selección Múltiple")
@@ -136,24 +152,21 @@ elif menu == "Lecciones A1":
                     
                     st.markdown("---")
                     st.write("### ✏️ Parte II: Completación")
-                    st.info("Escribe la palabra o frase que falta sobre la línea para completar la oración correctamente.")
                     resp_comp = {}
                     for item in datos["quiz_cuento"]["completar"]:
                         resp_comp[item["p"]] = st.text_input(item["p"], key=f"comp_{tema_elegido}_{item['p']}")
                     
                     if st.button("Verificar Respuestas"):
-                        errores = 0
+                        err = 0
                         for item in datos["quiz_cuento"]["seleccion"]:
-                            if resp_sel[item["p"]] != item["r"]: errores += 1
+                            if resp_sel[item["p"]] != item["r"]: err += 1
                         for item in datos["quiz_cuento"]["completar"]:
-                            # Validación flexible (ignora mayúsculas/minúsculas y espacios extras)
-                            if resp_comp[item["p"]].lower().strip() != item["r"].lower(): errores += 1
+                            if resp_comp[item["p"]].lower().strip() != item["r"].lower(): err += 1
                         
-                        if errores == 0:
-                            st.balloons()
-                            st.success("✨ ¡Perfecto! Has comprendido todo el cuento de Brisa y Río.")
+                        if err == 0:
+                            st.balloons(); st.success("✨ ¡Perfecto! Has comprendido todo.")
                         else:
-                            st.warning(f"⚠️ Tienes {errores} respuesta(s) incorrecta(s). ¡Vuelve a ver el video para encontrar la respuesta correcta!")
+                            st.warning(f"⚠️ Tienes {err} errores. ¡Vuelve a ver el video para encontrar la respuesta correcta!")
             else:
                 st.info("📌 El video del cuento estará disponible pronto.")
 
@@ -165,10 +178,10 @@ elif menu == "Lecciones A1":
                 if "pdf" in datos:
                     try:
                         with open(datos["pdf"], "rb") as f:
-                            st.download_button("📥 Descargar Minilibro", f, file_name=datos["pdf"], key=f"btn_p_{tema_elegido}")
+                            st.download_button("📥 Descargar", f, file_name=datos["pdf"], key=f"btn_p_{tema_elegido}")
                     except: st.warning("Archivo no encontrado.")
             with col2:
-                st.write("#### 📝 Fichas de Práctica")
+                st.write("#### 📝 Fichas")
                 st.info("Próximamente.")
 
 elif menu == "Contacto":
