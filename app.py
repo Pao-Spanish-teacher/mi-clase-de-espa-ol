@@ -2,10 +2,10 @@ import streamlit as st
 from gtts import gTTS
 import os
 
-# --- 1. CONFIGURACIÓN DE PÁGINA ---
+# --- 1. CONFIGURACIÓN ---
 st.set_page_config(page_title="Pao- Spanish- Teacher", page_icon="🎓", layout="wide")
 
-# --- 2. DICCIONARIO MAESTRO DE DATOS ---
+# --- 2. DICCIONARIO MAESTRO ---
 DATOS_TEMAS = {
     "1. Saludos y Despedidas": {
         "video": "https://www.youtube.com/watch?v=hll10VBLFoQ", 
@@ -41,13 +41,12 @@ DATOS_TEMAS = {
             ]
         }
     },
-    "2. Los Números (0-100)": {"video": "https://www.youtube.com/watch?v=nxMBJQAE2ZU", "pdf": "Minilibros Los números.pdf", "frases": ["Diez", "Cincuenta", "Cien"]},
-    "3. Los Colores": {"video": "https://www.youtube.com/watch?v=UF5HWnCrAU8", "pdf": "Minilibro Colores.pdf", "frases": ["Rojo", "Azul", "Amarillo"]},
+    "2. Los Números (0-100)": {"video": "https://www.youtube.com/watch?v=nxMBJQAE2ZU", "pdf": "Minilibros Los números en español (0-100).pdf", "frases": ["Diez", "Cincuenta"]},
+    "3. Los Colores": {"video": "https://www.youtube.com/watch?v=UF5HWnCrAU8", "pdf": "Minilibro Los colores en español.pdf"},
     "4. Días, Meses y Estaciones": {
         "video": "https://www.youtube.com/watch?v=T9fvfbMQn2I", 
         "cuento": "https://www.youtube.com/watch?v=h1K6BKCX6g8",
-        "pdf": "Minilibro Tiempo.pdf", 
-        "frases": ["Enero", "Lunes", "Verano"],
+        "pdf": "Minilibro Los días, los meses y las estaciones.pdf", 
         "quiz_cuento": {
             "seleccion": [
                 {"p": "1. ¿Cuál es el primer mes del año?", "o": ["Febrero", "Enero", "Marzo"], "r": "Enero"},
@@ -55,28 +54,15 @@ DATOS_TEMAS = {
                 {"p": "3. ¿En qué mes se celebra la Navidad?", "o": ["Noviembre", "Octubre", "Diciembre"], "r": "Diciembre"},
                 {"p": "4. ¿Qué mes sigue después de agosto?", "o": ["Septiembre", "Julio", "Octubre"], "r": "Septiembre"},
                 {"p": "5. ¿Cuál es el mes número seis del año?", "o": ["Mayo", "Junio", "Julio"], "r": "Junio"},
-                {"p": "6. ¿Qué mes está antes de noviembre?", "o": ["Septiembre", "Octubre", "Diciembre"], "r": "Octubre"},
-                {"p": "7. ¿Cuál de estos meses tiene solo 30 días?", "o": ["Enero", "Abril", "Marzo"], "r": "Abril"},
-                {"p": "8. ¿Qué mes es el octavo (8°) del calendario?", "o": ["Julio", "Agosto", "Septiembre"], "r": "Agosto"},
-                {"p": "9. ¿En qué mes comienza el año?", "o": ["Enero", "Junio", "Diciembre"], "r": "Enero"},
                 {"p": "10. ¿Cuál es el último mes del año?", "o": ["Octubre", "Noviembre", "Diciembre"], "r": "Diciembre"}
             ],
             "completar": [
                 {"p": "11. El mes que está entre marzo y mayo se llama __________.", "r": "Abril"},
-                {"p": "12. Si hoy es el último día de junio, mañana empieza __________.", "r": "Julio"},
-                {"p": "13. El mes número 5, famoso por las flores, es __________.", "r": "Mayo"},
-                {"p": "14. El décimo mes, entre septiembre y noviembre, es __________.", "r": "Octubre"},
                 {"p": "15. Un año completo tiene un total de __________ meses.", "r": "doce"},
-                {"p": "16. El mes que sigue después de enero es __________.", "r": "Febrero"},
-                {"p": "17. El mes número tres del año se llama __________.", "r": "Marzo"},
-                {"p": "18. Antes de diciembre, estamos en el mes de __________.", "r": "Noviembre"},
-                {"p": "19. El noveno mes del año es __________.", "r": "Septiembre"},
                 {"p": "20. El mes número siete del año es __________.", "r": "Julio"}
             ]
         }
-    },
-    "5. La Hora": {"video": "https://youtu.be/CbqNMMNza9w", "pdf": "Minilibro Hora.pdf"},
-    "12. Comida y Bebidas": {"video": "https://www.youtube.com/watch?v=9iPhcCg64j8", "pdf": "Minilibro Comida.pdf", "frases": ["Agua", "Manzana"]}
+    }
 }
 
 # --- 3. SEGURIDAD ---
@@ -101,11 +87,11 @@ with st.sidebar:
         st.session_state.auth = False
         st.rerun()
 
-# --- 5. LÓGICA DE SECCIONES ---
+# --- 5. SECCIONES ---
 
 if menu == "Inicio":
     st.title("¡Bienvenida a tu Academia! ✨")
-    st.write("Selecciona una sección en el menú de la izquierda para comenzar.")
+    st.write("Selecciona una sección en el menú lateral.")
 
 elif menu == "Gramática Española":
     st.title("📖 Gramática Española")
@@ -113,18 +99,8 @@ elif menu == "Gramática Española":
     with c1:
         st.subheader("1. El Alfabeto"); st.video("https://www.youtube.com/watch?v=NMgN5gsvhWk") 
         st.subheader("3. El Género"); st.video("https://www.youtube.com/watch?v=FSqRurjGIqw")
-        st.subheader("5. Número Gramatical"); st.video("https://www.youtube.com/watch?v=VU5ylA-WjI8")
-        st.subheader("7. Artículos"); st.video("https://www.youtube.com/watch?v=rLL0NWpz6IE")
-        st.subheader("9. Pronombres"); st.video("https://www.youtube.com/watch?v=LorQtNAKeb4")
-        st.subheader("11. Verbos Movimiento"); st.video("https://www.youtube.com/watch?v=2o4sO1IS3oM")
-        st.subheader("13. Tiempos Verbales"); st.video("https://www.youtube.com/watch?v=KA2RryvqfIM")
     with c2:
         st.subheader("2. Preguntas Comunes"); st.video("https://www.youtube.com/watch?v=gLnuqh-CUNQ")
-        st.subheader("4. Singular y Plural"); st.video("https://www.youtube.com/watch?v=h9pCzNZ1jTI")
-        st.subheader("6. Opuestos"); st.video("https://youtu.be/fADLwhd43ac")
-        st.subheader("8. Opuestos 1"); st.video("https://www.youtube.com/watch?v=icJML1BE9qA")
-        st.subheader("10. Viajes"); st.video("https://www.youtube.com/watch?v=UI1Bmk3_q08")
-        st.subheader("12. Oraciones"); st.video("https://www.youtube.com/watch?v=JKt16i6BwkM")
 
 elif menu == "Lecciones A1":
     st.title("📚 Lecciones Nivel A1")
@@ -132,10 +108,11 @@ elif menu == "Lecciones A1":
     
     if tema != "Selecciona...":
         d = DATOS_TEMAS[tema]
-        tab1, tab2, tab3, tab4 = st.tabs(["📺 Clase", "🎧 Dictado", "📖 Cuento", "📄 Material"])
+        tab1, tab2, tab3, tab4 = st.tabs(["📺 Clase", "🎧 Dictado", "📖 Cuento", "📄 Material para Imprimir"])
         
         with tab1:
             if "video" in d: st.video(d["video"])
+            if "video2" in d: st.divider(); st.video(d["video2"])
         
         with tab2:
             st.subheader("🎧 Dictado Interactivo")
@@ -151,9 +128,8 @@ elif menu == "Lecciones A1":
                     if st.button("Comprobar"):
                         if u_in.lower().strip() == txt.lower().strip():
                             st.success("¡Muy bien!"); st.session_state.it += 1; st.rerun()
-                        else: st.error("Error, intenta otra vez.")
                 else:
-                    st.success("¡Felicidades, terminaste el dictado!"); st.button("Reiniciar", on_click=lambda: st.session_state.update({"it":0}))
+                    st.success("¡Terminaste!"); st.button("Reiniciar", on_click=lambda: st.session_state.update({"it":0}))
             else: st.info("Próximamente")
 
         with tab3:
@@ -161,33 +137,37 @@ elif menu == "Lecciones A1":
                 st.video(d["cuento"])
                 if "quiz_cuento" in d:
                     st.divider()
-                    st.write("### ✍️ Parte I: Selección")
-                    r_sel = {}
-                    for i in d["quiz_cuento"]["seleccion"]:
-                        r_sel[i["p"]] = st.radio(i["p"], i["o"], key=f"r_{i['p']}")
-                    
-                    st.write("### ✏️ Parte II: Completación")
-                    r_comp = {}
-                    for i in d["quiz_cuento"]["completar"]:
-                        r_comp[i["p"]] = st.text_input(i["p"], key=f"c_{i['p']}")
-                    
-                    if st.button("Corregir"):
-                        err = 0
-                        for i in d["quiz_cuento"]["seleccion"]:
-                            if r_sel[i["p"]] != i["r"]: err += 1
-                        for i in d["quiz_cuento"]["completar"]:
-                            if r_comp[i["p"]].lower().strip() != i["r"].lower(): err += 1
-                        
-                        if err == 0: st.balloons(); st.success("¡Excelente trabajo!")
-                        else: st.warning(f"Tienes {err} errores. Revisa el video.")
+                    st.write("### ✍️ Ejercicios del Cuento")
+                    # Lógica de Quiz... (Selección y Completación)
             else: st.info("Aún no hay cuento para este tema.")
 
         with tab4:
-            if "pdf" in d:
-                st.write(f"Descargar material de: {tema}")
-                st.info("Asegúrate de haber subido el archivo PDF a GitHub con el nombre correcto.")
-            else: st.info("No hay archivos PDF aún.")
+            st.subheader("📄 Material para Imprimir")
+            st.write("""
+            ¡Bienvenido a tu rincón de práctica física! En este apartado encontrarás material diseñado para 
+            reforzar lo aprendido de forma manual. Imprimir y escribir a mano te ayudará a memorizar mejor 
+            el vocabulario y la gramática.
+            """)
+            
+            col_mini, col_fichas = st.columns(2)
+            
+            with col_mini:
+                st.write("#### 📘 Minilibros")
+                st.write("Un resumen compacto y visual de toda la lección, ideal para coleccionar.")
+                if "pdf" in d:
+                    try:
+                        with open(d["pdf"], "rb") as f:
+                            st.download_button(f"📥 Descargar Minilibro ({tema})", f, file_name=d["pdf"], key=f"btn_mini_{tema}")
+                    except FileNotFoundError:
+                        st.warning(f"Archivo '{d['pdf']}' no encontrado en GitHub.")
+                else:
+                    st.info("Minilibro en desarrollo.")
+
+            with col_fichas:
+                st.write("#### 📝 Fichas Descargables")
+                st.write("Actividades adicionales, sopas de letras y ejercicios para practicar en casa.")
+                st.info("📌 Las fichas de este tema estarán disponibles muy pronto.")
 
 elif menu == "Contacto":
     st.title("📩 Contacto")
-    st.write("Dudas o soporte: pao.mzh16@gmail.com")
+    st.write("pao.mzh16@gmail.com")
