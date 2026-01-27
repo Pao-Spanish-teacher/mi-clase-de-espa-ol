@@ -286,3 +286,6 @@ elif menu == "Lecciones A1":
 
 elif menu == "Contacto":
     st.write("Soporte: pao.mzh16@gmail.com")
+
+elif menu == "Contacto":
+    st.write("Soporte: pao.mzh16@gmail.com")
