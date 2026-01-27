@@ -28,7 +28,7 @@ DATOS_TEMAS = {
                 {"p": "10. Nombre del niño:", "o": ["Mar", "Río", "Lago"], "r": "Río"}
             ],
             "completar": [
-                {"p": "11. ¿Cómo __________?", "r": "estás"},
+                {"p": "11. Cuando Río quiere saber cómo se siente su nueva amiga, él pregunta: ¿Cómo __________?", "r": "estás"},
                 {"p": "12. ¿Cómo te __________?", "r": "llamas"},
                 {"p": "13. Vivo en la __________", "r": "ciudad"},
                 {"p": "14. __________ favor", "r": "Por"},
