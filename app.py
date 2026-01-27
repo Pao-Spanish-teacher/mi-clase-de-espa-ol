@@ -20,10 +20,10 @@ DATOS_TEMAS = {
                 {"p": "2. ¿Primera palabra de Río?", "o": ["Adiós", "Gracias", "Hola"], "r": "Hola"},
                 {"p": "3. ¿Qué edad tienen?", "o": ["5 años", "7 años", "10 años"], "r": "5 años"},
                 {"p": "4. Frase tras presentarse:", "o": ["De nada", "Mucho gusto", "Perdón"], "r": "Mucho gusto"},
-                {"p": "5. Palabra para despedirse:", "o": ["Hola", "Adiós", "Por favor"], "r": "Adiós"},
+                {"p": "5. ¿Qué palabra usan para despedirse?", "o": ["Hola", "Adiós", "Por favor"], "r": "Adiós"},
                 {"p": "6. ¿Qué construía Brisa?", "o": ["Casa", "Castillo de arena", "Túnel"], "r": "Castillo de arena"},
                 {"p": "7. ¿Dónde están?", "o": ["Escuela", "Parque", "Playa"], "r": "Parque"},
-                {"p": "8. Respuesta a ¿Cómo estás?:", "o": ["¡Qué mal!", "Estoy bien, gracias", "No hablo"], "r": "Estoy bien, gracias"},
+                {"p": "8. Respuesta a ¿Cómo estás?", "o": ["¡Qué mal!", "Estoy bien, gracias", "No hablo"], "r": "Estoy bien, gracias"},
                 {"p": "9. Saludo de mañana:", "o": ["Buenas noches", "Buenos días", "Hasta luego"], "r": "Buenos días"},
                 {"p": "10. Nombre del niño:", "o": ["Mar", "Río", "Lago"], "r": "Río"}
             ],
@@ -41,23 +41,22 @@ DATOS_TEMAS = {
             ]
         }
     },
-    "2. Los Números (0-100)": {"video": "https://www.youtube.com/watch?v=nxMBJQAE2ZU", "pdf": "Minilibros Los números.pdf", "frases": ["Diez", "Cincuenta", "Cien"]},
+    "2. Los Números (0-100)": {"video": "https://www.youtube.com/watch?v=nxMBJQAE2ZU", "pdf": "Minilibros Números.pdf", "frases": ["Diez", "Cincuenta", "Cien"]},
     "3. Los Colores": {
         "video": "https://www.youtube.com/watch?v=UF5HWnCrAU8", 
         "cuento": "https://youtube.com/shorts/BDN7ST1YwcE",
-        "pdf": "Minilibro Los colores.pdf",
+        "pdf": "Minilibro Colores.pdf",
         "quiz_cuento": {
             "seleccion": [
-                {"p": "1. Colores primarios:", "o": ["Verde/Naranja/Violeta", "Amarillo/Azul/Rojo", "Blanco/Negro"], "r": "Amarillo/Azul/Rojo"},
+                {"p": "1. Colores primarios:", "o": ["Verde, naranja y violeta", "Amarillo, azul y rojo", "Blanco, negro y gris"], "r": "Amarillo, azul y rojo"},
                 {"p": "2. Azul + Amarillo:", "o": ["Morado", "Verde", "Naranja"], "r": "Verde"},
-                {"p": "3. Rojo + Azul:", "o": ["Violeta", "Verde", "Marrón"], "r": "Violeta"},
-                {"p": "4. Rojo + Amarillo:", "o": ["Rosa", "Naranja", "Celeste"], "r": "Naranja"},
-                {"p": "5. Colores neutros:", "o": ["Rojo/Azul", "Blanco/Negro", "Verde/Amarillo"], "r": "Blanco/Negro"}
+                {"p": "3. Rojo + Azul:", "o": ["Violeta / Morado", "Verde", "Marrón"], "r": "Violeta / Morado"},
+                {"p": "5. Colores neutros:", "o": ["Rojo y Azul", "Blanco y Negro", "Amarillo y Verde"], "r": "Blanco y Negro"}
             ],
             "completar": [
                 {"p": "11. Rojo, azul y amarillo son: __________", "r": "primarios"},
                 {"p": "13. Para aclarar usamos el: __________", "r": "blanco"},
-                {"p": "18. Blanco + Negro = __________", "r": "gris"}
+                {"p": "18. Mezcla de blanco y negro: __________", "r": "gris"}
             ]
         }
     },
@@ -65,16 +64,18 @@ DATOS_TEMAS = {
         "video": "https://www.youtube.com/watch?v=T9fvfbMQn2I", 
         "cuento": "https://youtube.com/shorts/h1K6BKCX6g8",
         "cuento2": "https://youtube.com/shorts/nqv12fATbOQ",
-        "pdf": "Minilibro Días y Meses.pdf",
+        "pdf": "Minilibro Meses Estaciones.pdf",
         "quiz_cuento": {
             "seleccion": [
                 {"p": "1. Primer mes:", "o": ["Febrero", "Enero", "Marzo"], "r": "Enero"},
                 {"p": "2. Mes más corto:", "o": ["Abril", "Febrero", "Junio"], "r": "Febrero"},
-                {"p": "3. Mes Navidad:", "o": ["Noviembre", "Octubre", "Diciembre"], "r": "Diciembre"}
+                {"p": "1. ¿En qué estación brotan flores?", "o": ["Invierno", "Primavera", "Otoño"], "r": "Primavera"},
+                {"p": "2. Estación más calurosa:", "o": ["Verano", "Invierno", "Otoño"], "r": "Verano"}
             ],
             "completar": [
-                {"p": "11. Entre marzo y mayo: __________", "r": "Abril"},
-                {"p": "15. Total de meses: __________", "r": "doce"}
+                {"p": "11. Mes entre marzo y mayo: __________", "r": "Abril"},
+                {"p": "15. El año tiene __________ meses.", "r": "doce"},
+                {"p": "11. Estación del 'renacimiento': __________", "r": "Primavera"}
             ]
         }
     },
@@ -85,16 +86,17 @@ DATOS_TEMAS = {
         "quiz_cuento": {
             "seleccion": [
                 {"p": "1. ¿A qué hora despierta Pedro?", "o": ["7:00", "8:00", "9:00"], "r": "8:00"},
-                {"p": "4. ¿A qué hora es su clase?", "o": ["8:30", "9:00", "10:00"], "r": "9:00"},
-                {"p": "10. ¿A qué hora se duerme?", "o": ["9:00", "10:00", "11:00"], "r": "10:00"}
+                {"p": "4. ¿Hora de clase?", "o": ["8:30", "9:00", "10:00"], "r": "9:00"},
+                {"p": "8. ¿Qué cena Pedro?", "o": ["Pizza", "Ensalada y pescado", "Arroz con pollo"], "r": "Ensalada y pescado"}
             ],
             "completar": [
+                {"p": "11. Se despierta a las __________", "r": "ocho"},
                 {"p": "12. Pan con __________", "r": "mantequilla"},
                 {"p": "19. Antes de dormir le gusta __________", "r": "leer"}
             ]
         }
     },
-    "6. La Familia": {"video": "https://www.youtube.com/watch?v=4C9JiqgMt8o", "pdf": "minilibro La familia.pdf"},
+    "6. La Familia": {"video": "https://www.youtube.com/watch?v=4C9JiqgMt8o", "pdf": "minilibro Familia.pdf"},
     "7. Profesiones (Generales y Técnicas)": {
         "video": "https://www.youtube.com/watch?v=szed1no5viA", 
         "cuento": "https://youtube.com/shorts/smnwY7G3VUQ",
@@ -102,11 +104,12 @@ DATOS_TEMAS = {
         "quiz_cuento": {
             "seleccion": [
                 {"p": "1. ¿Quién enseña?", "o": ["Policía", "Maestra", "Cocinero"], "r": "Maestra"},
-                {"p": "2. Uniforme rojo apaga fuego:", "o": ["Bombero", "Médico", "Piloto"], "r": "Bombero"}
+                {"p": "2. Uniforme rojo y apaga incendios:", "o": ["Bombero", "Médico", "Piloto"], "r": "Bombero"},
+                {"p": "10. ¿Quién arregla tuberías?", "o": ["Policía", "Fontanero", "Doctor"], "r": "Fontanero"}
             ],
             "completar": [
-                {"p": "13. Si tengo fiebre voy al __________", "r": "doctor"},
-                {"p": "20. Arregla tuberías: __________", "r": "fontanero"}
+                {"p": "11. La __________ escribe en la pizarra.", "r": "maestra"},
+                {"p": "13. Si tengo fiebre voy al __________", "r": "doctor"}
             ]
         }
     },
@@ -118,11 +121,13 @@ DATOS_TEMAS = {
         "quiz_cuento": {
             "seleccion": [
                 {"p": "1. Para ver colores usamos:", "o": ["Oídos", "Ojos", "Nariz"], "r": "Ojos"},
-                {"p": "2. Para caminar:", "o": ["Manos", "Brazos", "Piernas"], "r": "Piernas"}
+                {"p": "2. Para caminar:", "o": ["Manos", "Brazos", "Piernas"], "r": "Piernas"},
+                {"p": "5. ¿Dónde está el cerebro?", "o": ["Pecho", "Cabeza", "Estómago"], "r": "Cabeza"}
             ],
             "completar": [
-                {"p": "12. Usamos la __________ para comer", "r": "boca"},
-                {"p": "18. Para oler usamos la __________", "r": "nariz"}
+                {"p": "12. Usamos la __________ para comer.", "r": "boca"},
+                {"p": "18. Usamos la __________ para oler.", "r": "nariz"},
+                {"p": "19. El tacto está en la __________", "r": "piel"}
             ]
         }
     },
@@ -133,11 +138,11 @@ DATOS_TEMAS = {
         "pdf": "Minilibro Comida.pdf",
         "quiz_cuento": {
             "seleccion": [
-                {"p": "1. Mateo desayuna:", "o": ["Galletas", "Pan tostado", "Frutas"], "r": "Pan tostado"},
-                {"p": "6. Frutas de Elena:", "o": ["Pera/Uva", "Manzana/Banana", "Sandía"], "r": "Manzana/Banana"}
+                {"p": "1. ¿Qué desayuna Mateo?", "o": ["Galletas", "Pan tostado", "Frutas"], "r": "Pan tostado"},
+                {"p": "6. Frutas de Elena:", "o": ["Pera y uva", "Manzana y banana", "Sandía"], "r": "Manzana y banana"}
             ],
             "completar": [
-                {"p": "12. El café está __________", "r": "caliente"},
+                {"p": "12. El café está muy __________", "r": "caliente"},
                 {"p": "19. El arroz es de color __________", "r": "blanco"}
             ]
         }
@@ -152,8 +157,8 @@ DATOS_TEMAS = {
                 {"p": "4. Objeto azul en dormitorio:", "o": ["Silla", "Cama", "Cortina"], "r": "Cama"}
             ],
             "completar": [
-                {"p": "13. Mesa hecha de __________", "r": "madera"},
-                {"p": "17. Jardín lleno de __________", "r": "flores"}
+                {"p": "11. Resalta por ser de color __________", "r": "amarillo"},
+                {"p": "13. Mesa fabricada de __________", "r": "madera"}
             ]
         }
     },
@@ -165,10 +170,10 @@ DATOS_TEMAS = {
         "quiz_cuento": {
             "seleccion": [
                 {"p": "1. Color del carro:", "o": ["Azul", "Rojo", "Blanco"], "r": "Rojo"},
-                {"p": "2. Transporte blanco vuela:", "o": ["Tren", "Avión", "Carro"], "r": "Avión"}
+                {"p": "2. Transporte blanco que vuela:", "o": ["Tren", "Avión", "Carro"], "r": "Avión"}
             ],
             "completar": [
-                {"p": "12. Moto de color __________", "r": "azul"},
+                {"p": "12. La moto es de color __________", "r": "azul"},
                 {"p": "13. El __________ es gris y va en rieles", "r": "tren"}
             ]
         }
@@ -181,17 +186,19 @@ DATOS_TEMAS = {
         "quiz_cuento": {
             "seleccion": [
                 {"p": "1. Dice 'Muuu':", "o": ["Perro", "Vaca", "Gato"], "r": "Vaca"},
-                {"p": "2. Dice 'Guau':", "o": ["Pato", "Perro", "Cerdo"], "r": "Perro"}
+                {"p": "2. Dice 'Guau':", "o": ["Pato", "Perro", "Cerdo"], "r": "Perro"},
+                {"p": "10. Rosa, cola rizada y hace 'Oink':", "o": ["Hipopótamo", "Cerdo", "Oso"], "r": "Cerdo"}
             ],
             "completar": [
-                {"p": "12. El __________ mueve la cola", "r": "perro"},
-                {"p": "18. Al __________ le gusta el lodo", "r": "cerdo"}
+                {"p": "12. El __________ mueve la cola.", "r": "perro"},
+                {"p": "13. El __________ ronronea.", "r": "gato"},
+                {"p": "20. Nace de un huevo: __________", "r": "pollito"}
             ]
         }
     }
 }
 
-# --- 3. LÓGICA DE ACCESO ---
+# --- 3. ACCESO ---
 if "auth" not in st.session_state: st.session_state.auth = False
 if not st.session_state.auth:
     st.title("🎓 Academia Pao- Spanish- Teacher")
@@ -211,60 +218,29 @@ with st.sidebar:
         st.session_state.auth = False
         st.rerun()
 
-# --- 5. LÓGICA DE CONTENIDO ---
+# --- 5. CONTENIDO ---
 if menu == "Inicio":
     st.title("¡Bienvenida a tu Academia! ✨")
-    st.write("Selecciona una lección para comenzar.")
+    st.write("Explora las secciones para comenzar tu aprendizaje.")
 
 elif menu == "Gramática Española":
     st.title("📖 Gramática Española")
-    # (elif menu == "Gramática Española":
-    st.title("📖 Gramática Española")
-    st.write("Domina las bases del idioma con estas lecciones fundamentales.")
-    
     c1, c2 = st.columns(2)
-    
     with c1:
-        st.subheader("1. El Alfabeto")
-        st.video("https://www.youtube.com/watch?v=NMgN5gsvhWk") 
-        
-        st.subheader("3. El Género (Masculino y Femenino)")
-        st.video("https://www.youtube.com/watch?v=FSqRurjGIqw")
-        
-        st.subheader("5. Número Gramatical (Singular y Plural)")
-        st.video("https://www.youtube.com/watch?v=VU5ylA-WjI8")
-        
-        st.subheader("7. Los Artículos")
-        st.video("https://www.youtube.com/watch?v=rLL0NWpz6IE")
-        
-        st.subheader("9. Los Pronombres Personales")
-        st.video("https://www.youtube.com/watch?v=LorQtNAKeb4")
-        
-        st.subheader("11. Verbos de Movimiento")
-        st.video("https://www.youtube.com/watch?v=2o4sO1IS3oM")
-        
-        st.subheader("13. Tiempos Verbales (Introducción)")
-        st.video("https://www.youtube.com/watch?v=KA2RryvqfIM")
-
+        st.subheader("1. El Alfabeto"); st.video("https://www.youtube.com/watch?v=NMgN5gsvhWk") 
+        st.subheader("3. El Género"); st.video("https://www.youtube.com/watch?v=FSqRurjGIqw")
+        st.subheader("5. Número Gramatical"); st.video("https://www.youtube.com/watch?v=VU5ylA-WjI8")
+        st.subheader("7. Artículos"); st.video("https://www.youtube.com/watch?v=rLL0NWpz6IE")
+        st.subheader("9. Pronombres"); st.video("https://www.youtube.com/watch?v=LorQtNAKeb4")
+        st.subheader("11. Verbos Movimiento"); st.video("https://www.youtube.com/watch?v=2o4sO1IS3oM")
+        st.subheader("13. Tiempos Verbales"); st.video("https://www.youtube.com/watch?v=KA2RryvqfIM")
     with c2:
-        st.subheader("2. Preguntas Comunes")
-        st.video("https://www.youtube.com/watch?v=gLnuqh-CUNQ")
-        
-        st.subheader("4. Formación del Plural")
-        st.video("https://www.youtube.com/watch?v=h9pCzNZ1jTI")
-        
-        st.subheader("6. Adjetivos Opuestos")
-        st.video("https://youtu.be/fADLwhd43ac")
-        
-        st.subheader("8. Opuestos - Parte 2")
-        st.video("https://www.youtube.com/watch?v=icJML1BE9qA")
-        
-        st.subheader("10. Vocabulario de Viajes")
-        st.video("https://www.youtube.com/watch?v=UI1Bmk3_q08")
-        
-        st.subheader("12. Estructura de las Oraciones")
-        st.video("https://www.youtube.com/watch?v=JKt16i6BwkM"))
-    st.info("Videos de gramática configurados.")
+        st.subheader("2. Preguntas Comunes"); st.video("https://www.youtube.com/watch?v=gLnuqh-CUNQ")
+        st.subheader("4. Singular y Plural"); st.video("https://www.youtube.com/watch?v=h9pCzNZ1jTI")
+        st.subheader("6. Opuestos"); st.video("https://youtu.be/fADLwhd43ac")
+        st.subheader("8. Opuestos 1"); st.video("https://www.youtube.com/watch?v=icJML1BE9qA")
+        st.subheader("10. Viajes"); st.video("https://www.youtube.com/watch?v=UI1Bmk3_q08")
+        st.subheader("12. Oraciones"); st.video("https://www.youtube.com/watch?v=JKt16i6BwkM")
 
 elif menu == "Lecciones A1":
     st.title("📚 Temario Nivel A1")
@@ -302,35 +278,31 @@ elif menu == "Lecciones A1":
                 if d.get("quiz_cuento"):
                     st.divider(); st.write("### ✍️ Ejercicios de Comprensión")
                     
-                    # PARTE I: SELECCIÓN (Sin opción pre-seleccionada)
+                    # SELECCIÓN SIN OPCIÓN POR DEFECTO
                     r_sel = {}
                     for i in d["quiz_cuento"]["seleccion"]:
                         r_sel[i["p"]] = st.radio(i["p"], i["o"], index=None, key=f"sel_{tema}_{i['p']}")
                     
-                    # PARTE II: COMPLETAR
+                    # COMPLETAR
                     r_comp = {}
                     for i in d["quiz_cuento"]["completar"]:
                         r_comp[i["p"]] = st.text_input(i["p"], key=f"comp_{tema}_{i['p']}")
                     
-                    if st.button("Verificar Respuestas"):
-                        errores = 0
+                    if st.button("Verificar"):
+                        err = 0
                         for i in d["quiz_cuento"]["seleccion"]:
-                            if r_sel[i["p"]] != i["r"]: errores += 1
+                            if r_sel[i["p"]] != i["r"]: err += 1
                         for i in d["quiz_cuento"]["completar"]:
-                            if r_comp[i["p"]].lower().strip() != i["r"].lower(): errores += 1
+                            if r_comp[i["p"]].lower().strip() != i["r"].lower(): err += 1
                         
-                        if errores == 0: st.balloons(); st.success("¡Increíble! Todo perfecto.")
-                        else: st.warning(f"Tienes {errores} campos incorrectos o vacíos.")
+                        if err == 0: st.balloons(); st.success("¡Perfecto!")
+                        else: st.warning(f"Tienes {err} errores o campos vacíos.")
             else: st.info("Cuento próximamente.")
 
         with t4:
-            st.subheader("📄 Material PDF")
+            st.subheader("📄 Descargas")
             if d.get("pdf"):
-                st.write(f"Descarga el material de: {tema}")
-                # Aquí iría el código de download_button que ya tienes
-
-elif menu == "Contacto":
-    st.write("Soporte: pao.mzh16@gmail.com")
+                st.info(f"Aquí puedes descargar el material de {tema} una vez subido.")
 
 elif menu == "Contacto":
     st.write("Soporte: pao.mzh16@gmail.com")
