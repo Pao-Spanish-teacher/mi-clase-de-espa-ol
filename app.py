@@ -10,7 +10,7 @@ DATOS_TEMAS = {
     "1. Saludos y Despedidas": {
         "video": "https://www.youtube.com/watch?v=hll10VBLFoQ", 
         "video2": "https://www.youtube.com/watch?v=84FNM-Ni-6U", 
-        "video3": "https://www.youtube.com/watch?v=4txmiiR10wM",
+        "video3": "https://www.youtube.com/shorts/4txmiiR10wM",
         "cuento": "https://youtube.com/shorts/yhH8rwpEHRo",
         "pdf": "minilibro Saludos.pdf", 
         "frases": ["Buenos días", "¿Cómo estás?", "Mucho gusto", "Hasta mañana"],
