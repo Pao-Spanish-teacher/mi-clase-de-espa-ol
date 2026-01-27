@@ -5,7 +5,7 @@ import os
 # --- 1. CONFIGURACIÓN ---
 st.set_page_config(page_title="Pao- Spanish- Teacher", page_icon="🎓", layout="wide")
 
-# --- 2. DICCIONARIO MAESTRO CON LOS 18 TEMAS ---
+# --- 2. DICCIONARIO MAESTRO ACTUALIZADO ---
 DATOS_TEMAS = {
     "1. Saludos y Despedidas": {
         "video": "https://www.youtube.com/watch?v=hll10VBLFoQ", 
@@ -66,18 +66,28 @@ DATOS_TEMAS = {
     },
     "5. La Hora": {"video": "https://youtu.be/CbqNMMNza9w", "video2": "https://www.youtube.com/watch?v=xmeIIuBwxu4", "pdf": "Minilibro La Hora en Español.pdf"},
     "6. La Familia": {"video": "https://www.youtube.com/watch?v=4C9JiqgMt8o", "pdf": "minilibro La familia en español.pdf"},
-    "7. Las Profesiones": {"video": "https://www.youtube.com/watch?v=szed1no5viA", "pdf": "Minilibro Las profesiones en español.pdf"},
-    "8. Profesiones Técnicas": {"video": "https://www.youtube.com/watch?v=jnyMcesUtsI", "pdf": "Minilibro Las profesiones técnicas en español.pdf"},
-    "9. Nacionalidad y Países": {"video": "https://www.youtube.com/watch?v=T2HVf4YqHZY", "pdf": "Minilibros Los países y nacionalidades en español.pdf"},
-    "10. Partes del Cuerpo": {"video": "https://www.youtube.com/watch?v=OfX0hCFCdeA", "pdf": "Minilibro Las partes del cuerpo en español.pdf"},
-    "11. La Ropa y Vestimenta": {"video": "https://www.youtube.com/watch?v=nOisiL-Pyak", "pdf": "Minilibro La ropa y la vestimenta en español.pdf"},
-    "12. Comida y Bebidas": {"video": "https://www.youtube.com/watch?v=9iPhcCg64j8", "video2": "https://www.youtube.com/watch?v=LgpwYTK9RTc", "pdf": "Minilibro Comidas y Bebidas en Español..pdf"},
-    "13. La Casa": {"video": "https://youtu.be/2Wz5yyw80gs", "pdf": "Minilibro La casa y sus partes en español.pdf"},
-    "14. Objetos Cotidianos": {"video": "", "pdf": "Minilibros Los objetos cotidianos en español.pdf"},
-    "15. Medios de Transporte": {"video": "", "pdf": "Minilibros Los medios de transporte en español.pdf"},
-    "16. Los Lugares": {"video": "https://www.youtube.com/watch?v=DziT1MJLmk4", "video2": "https://www.youtube.com/watch?v=Ss_2il1-Sm8", "pdf": "Minilibro Los lugares en español.pdf"},
-    "17. Animales Domésticos": {"video": "https://www.youtube.com/watch?v=G2n_FA_vhPU", "pdf": "Minilibro Los animales domésticos en español.pdf"},
-    "18. Animales Salvajes": {"video": "", "pdf": "Minilibro Los animales salvajes en español.pdf"}
+    "7. Profesiones y Oficios (Generales y Técnicas)": {
+        "video": "https://www.youtube.com/watch?v=szed1no5viA", 
+        "video2": "https://www.youtube.com/watch?v=jnyMcesUtsI",
+        "pdf": "Minilibro Las profesiones en español.pdf",
+        "pdf2": "Minilibro Las profesiones técnicas en español.pdf"
+    },
+    "8. Nacionalidad y Países": {"video": "https://www.youtube.com/watch?v=T2HVf4YqHZY", "pdf": "Minilibros Los países y nacionalidades en español.pdf"},
+    "9. Partes del Cuerpo": {"video": "https://www.youtube.com/watch?v=OfX0hCFCdeA", "pdf": "Minilibro Las partes del cuerpo en español.pdf"},
+    "10. La Ropa y Vestimenta": {"video": "https://www.youtube.com/watch?v=nOisiL-Pyak", "pdf": "Minilibro La ropa y la vestimenta en español.pdf"},
+    "11. Comida y Bebidas": {"video": "https://www.youtube.com/watch?v=9iPhcCg64j8", "video2": "https://www.youtube.com/watch?v=LgpwYTK9RTc", "pdf": "Minilibro Comidas y Bebidas en Español..pdf"},
+    "12. La Casa": {"video": "https://youtu.be/2Wz5yyw80gs", "pdf": "Minilibro La casa y sus partes en español.pdf"},
+    "13. Objetos Cotidianos": {"video": "", "pdf": "Minilibros Los objetos cotidianos en español.pdf"},
+    "14. Medios de Transporte": {"video": "", "pdf": "Minilibros Los medios de transporte en español.pdf"},
+    "15. Los Lugares": {"video": "https://www.youtube.com/watch?v=DziT1MJLmk4", "video2": "https://www.youtube.com/watch?v=Ss_2il1-Sm8", "pdf": "Minilibro Los lugares en español.pdf"},
+    "16. La Rutina Diaria": {"video": "", "cuento": "", "pdf": ""},
+    "17. Los Animales (Domésticos y Salvajes)": {
+        "video": "https://www.youtube.com/watch?v=G2n_FA_vhPU", 
+        "video2": "", # Aquí irá el video de salvajes
+        "pdf": "Minilibro Los animales domésticos en español.pdf",
+        "pdf2": "Minilibro Los animales salvajes en español.pdf"
+    },
+    "18. El Verbo Ser y Estar": {"video": "", "pdf": ""}
 }
 
 # --- 3. ACCESO ---
@@ -163,30 +173,29 @@ elif menu == "Lecciones A1":
                 if d.get("quiz_cuento"):
                     st.divider()
                     st.write("### ✍️ Ejercicios de Comprensión")
-                    r_sel = {}
-                    for i in d["quiz_cuento"]["seleccion"]:
-                        r_sel[i["p"]] = st.radio(i["p"], i["o"], key=f"sel_{tema}_{i['p']}")
-                    r_comp = {}
-                    for i in d["quiz_cuento"]["completar"]:
-                        r_comp[i["p"]] = st.text_input(i["p"], key=f"comp_{tema}_{i['p']}")
+                    r_sel = {i["p"]: st.radio(i["p"], i["o"], key=f"sel_{tema}_{i['p']}") for i in d["quiz_cuento"]["seleccion"]}
+                    r_comp = {i["p"]: st.text_input(i["p"], key=f"comp_{tema}_{i['p']}") for i in d["quiz_cuento"]["completar"]}
                     if st.button("Verificar"):
                         err = sum(1 for i in d["quiz_cuento"]["seleccion"] if r_sel[i["p"]] != i["r"])
                         err += sum(1 for i in d["quiz_cuento"]["completar"] if r_comp[i["p"]].lower().strip() != i["r"].lower())
                         if err == 0: st.balloons(); st.success("¡Perfecto!")
-                        else: st.warning(f"Tienes {err} errores. Revisa el video.")
-            else: st.info("Cuento próximamente.")
+                        else: st.warning(f"Tienes {err} errores.")
+            if d.get("cuento2"): # Espacio por si hay un segundo cuento en los temas unidos
+                st.divider(); st.video(d["cuento2"])
+            elif not d.get("cuento"): st.info("Cuento próximamente.")
 
         with t4:
             st.subheader("📄 Material para Imprimir")
-            st.write("Refuerza lo aprendido escribiendo a mano. ¡Descarga tus archivos aquí!")
             c_m, c_f = st.columns(2)
             with c_m:
                 st.write("#### 📘 Minilibros")
-                if d.get("pdf"):
-                    try:
-                        with open(d["pdf"], "rb") as f:
-                            st.download_button(f"📥 Descargar Minilibro", f, file_name=d["pdf"], key=f"pdf_{tema}")
-                    except: st.warning("Archivo PDF no encontrado.")
+                pdfs = [d.get("pdf"), d.get("pdf2")]
+                for p in pdfs:
+                    if p:
+                        try:
+                            with open(p, "rb") as f:
+                                st.download_button(f"📥 Descargar {p}", f, file_name=p, key=f"btn_{p}")
+                        except: st.warning(f"Archivo {p} no encontrado.")
             with c_f:
                 st.write("#### 📝 Fichas")
                 st.info("📌 Fichas disponibles pronto.")
