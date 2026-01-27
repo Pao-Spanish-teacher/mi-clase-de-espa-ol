@@ -218,7 +218,52 @@ if menu == "Inicio":
 
 elif menu == "Gramática Española":
     st.title("📖 Gramática Española")
-    # (Aquí va tu lista de videos de gramática que ya tienes)
+    # (elif menu == "Gramática Española":
+    st.title("📖 Gramática Española")
+    st.write("Domina las bases del idioma con estas lecciones fundamentales.")
+    
+    c1, c2 = st.columns(2)
+    
+    with c1:
+        st.subheader("1. El Alfabeto")
+        st.video("https://www.youtube.com/watch?v=NMgN5gsvhWk") 
+        
+        st.subheader("3. El Género (Masculino y Femenino)")
+        st.video("https://www.youtube.com/watch?v=FSqRurjGIqw")
+        
+        st.subheader("5. Número Gramatical (Singular y Plural)")
+        st.video("https://www.youtube.com/watch?v=VU5ylA-WjI8")
+        
+        st.subheader("7. Los Artículos")
+        st.video("https://www.youtube.com/watch?v=rLL0NWpz6IE")
+        
+        st.subheader("9. Los Pronombres Personales")
+        st.video("https://www.youtube.com/watch?v=LorQtNAKeb4")
+        
+        st.subheader("11. Verbos de Movimiento")
+        st.video("https://www.youtube.com/watch?v=2o4sO1IS3oM")
+        
+        st.subheader("13. Tiempos Verbales (Introducción)")
+        st.video("https://www.youtube.com/watch?v=KA2RryvqfIM")
+
+    with c2:
+        st.subheader("2. Preguntas Comunes")
+        st.video("https://www.youtube.com/watch?v=gLnuqh-CUNQ")
+        
+        st.subheader("4. Formación del Plural")
+        st.video("https://www.youtube.com/watch?v=h9pCzNZ1jTI")
+        
+        st.subheader("6. Adjetivos Opuestos")
+        st.video("https://youtu.be/fADLwhd43ac")
+        
+        st.subheader("8. Opuestos - Parte 2")
+        st.video("https://www.youtube.com/watch?v=icJML1BE9qA")
+        
+        st.subheader("10. Vocabulario de Viajes")
+        st.video("https://www.youtube.com/watch?v=UI1Bmk3_q08")
+        
+        st.subheader("12. Estructura de las Oraciones")
+        st.video("https://www.youtube.com/watch?v=JKt16i6BwkM"))
     st.info("Videos de gramática configurados.")
 
 elif menu == "Lecciones A1":
