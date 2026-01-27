@@ -41,7 +41,7 @@ DATOS_TEMAS = {
             ]
         }
     },
-    "2. Los Números (0-100)": {"video": "https://www.youtube.com/watch?v=nxMBJQAE2ZU", "pdf": "Minilibros Números.pdf", "frases": ["Diez", "Cincuenta", "Cien"]},
+    "2. Los Números (0-100)": {"video": "https://www.youtube.com/watch?v=nxMBJQAE2ZU", "video2": "https://www.youtube.com/watch?v=u_BAr1fjILU",  "pdf": "Minilibros Números.pdf", "frases": ["Diez", "Cincuenta", "Cien"]},
     "3. Los Colores": {
         "video": "https://www.youtube.com/watch?v=UF5HWnCrAU8", 
         "cuento": "https://youtube.com/shorts/BDN7ST1YwcE",
