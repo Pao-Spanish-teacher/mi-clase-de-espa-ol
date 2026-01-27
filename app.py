@@ -29,15 +29,15 @@ DATOS_TEMAS = {
             ],
             "completar": [
                 {"p": "11. Cuando Río quiere saber cómo se siente su nueva amiga, él pregunta: ¿Cómo __________?", "r": "estás"},
-                {"p": "12. ¿Cómo te __________?", "r": "llamas"},
-                {"p": "13. Vivo en la __________", "r": "ciudad"},
-                {"p": "14. __________ favor", "r": "Por"},
-                {"p": "15. Hasta __________", "r": "mañana"},
-                {"p": "16. Palabra mágica: __________", "r": "Gracias"},
-                {"p": "17. Serían muy buenos __________", "r": "amigos"},
-                {"p": "18. Buenas __________ (tarde)", "r": "tardes"},
-                {"p": "19. Mucho __________", "r": "gusto"},
-                {"p": "20. La niña es __________", "r": "Brisa"}
+                {"p": "12. Para conocer el nombre de la niña, el niño pregunta: ¿Cómo te __________?", "r": "llamas"},
+                {"p": "13. Río le cuenta a Brisa el lugar donde reside diciendo: Vivo en la __________", "r": "ciudad"},
+                {"p": "14. Para pedir algo de forma educada, siempre debemos usar la frase: __________ favor", "r": "Por"},
+                {"p": "15. Si los niños se volvieran a ver al día siguiente, podrían despedirse diciendo: Hasta __________", "r": "mañana"},
+                {"p": "16. Al recibir un cumplido o una ayuda la Palabra mágica: __________", "r": "Gracias"},
+                {"p": "17. Brisa y Río decidieron que a partir de ese momento Serían muy buenos __________", "r": "amigos"},
+                {"p": "18. Si saludas a alguien por la tarde, la expresión correcta es Buenas __________ (tarde)", "r": "tardes"},
+                {"p": "19. Cuando te presentan a alguien y te sientes feliz de conocerle, dices Mucho __________", "r": "gusto"},
+                {"p": "20. El nombre de La niña es __________", "r": "Brisa"}
             ]
         }
     },
